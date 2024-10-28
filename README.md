@@ -1,1 +1,1 @@
-# LipidProphet.github.io
+# LipidProphet
