@@ -11,7 +11,7 @@
   --ink-50: #f7f9fb;
   --brand: #ffbf00;
   --brand-dark: #b77f00;
-  --brand-soft: #fff4c7;
+  --brand-soft: #fff9df;
   --blue: #2366d1;
   --blue-dark: #174b9a;
   --blue-soft: #eaf2ff;
@@ -391,7 +391,7 @@ pre code {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 82% 26%, rgba(255, 191, 0, .18), transparent 28rem),
+    radial-gradient(circle at 82% 26%, rgba(72, 167, 214, .16), transparent 28rem),
     radial-gradient(circle at 12% 90%, rgba(35, 102, 209, .32), transparent 30rem),
     linear-gradient(135deg, #071827 0%, #0c2943 55%, #113b5b 100%);
   color: var(--white);
@@ -416,8 +416,8 @@ pre code {
   grid-template-columns: minmax(0, 1.25fr) minmax(17rem, .75fr);
   align-items: center;
   gap: clamp(2rem, 7vw, 7rem);
-  min-height: 34rem;
-  padding-block: clamp(4rem, 8vw, 7rem);
+  min-height: 29rem;
+  padding-block: clamp(3rem, 5.5vw, 5rem);
 }
 
 .hero h1 {
@@ -515,8 +515,8 @@ pre code {
   position: relative;
   place-items: center;
   justify-self: center;
-  width: min(100%, 23rem);
-  min-height: 24rem;
+  width: min(100%, 21rem);
+  min-height: 20rem;
   isolation: isolate;
 }
 
@@ -533,7 +533,7 @@ pre code {
   z-index: -2;
   inset: 3% -8% 6%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 210, 72, .3) 0%, rgba(255, 191, 0, .12) 37%, rgba(255, 191, 0, 0) 72%);
+  background: radial-gradient(circle, rgba(126, 211, 238, .22) 0%, rgba(35, 102, 209, .1) 42%, rgba(35, 102, 209, 0) 72%);
   content: "";
 }
 
@@ -711,7 +711,7 @@ pre code {
   border-bottom: 1px solid var(--ink-100);
   padding-block: clamp(2.75rem, 5vw, 3.75rem);
   background:
-    radial-gradient(circle at 88% 5%, rgba(255, 191, 0, .22), transparent 23rem),
+    radial-gradient(circle at 88% 5%, rgba(72, 167, 214, .13), transparent 23rem),
     linear-gradient(135deg, var(--ink-50), #eef5fb);
 }
 
@@ -1193,7 +1193,7 @@ pre code {
   border-radius: var(--radius-lg);
   padding: clamp(1.6rem, 5vw, 3.2rem);
   background:
-    radial-gradient(circle at 95% 0%, rgba(255, 191, 0, .22), transparent 18rem),
+    radial-gradient(circle at 95% 0%, rgba(72, 167, 214, .16), transparent 18rem),
     var(--ink-950);
   color: var(--ink-200);
 }
@@ -1365,8 +1365,9 @@ pre code {
 
   .hero-grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
     min-height: 0;
-    padding-block: 3.5rem 4rem;
+    padding-block: 2.75rem 3rem;
   }
 
   .hero h1 {
@@ -1374,8 +1375,8 @@ pre code {
   }
 
   .hero-visual {
-    width: min(70vw, 17rem);
-    min-height: 18rem;
+    width: min(64vw, 15rem);
+    min-height: 15rem;
   }
 
   .trust-list {
