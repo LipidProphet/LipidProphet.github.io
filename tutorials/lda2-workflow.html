@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Use LDA2 LC-MS² result exports as input to a reproducible LipidProphet workflow.">
+  <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/lda2-workflow.html">
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <title>LDA2 to LC-MS² | LipidProphet tutorial</title>
+</head>
+<body>
+  <site-header active="tutorials" root=".."></site-header>
+  <main id="main-content">
+    <header class="page-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>LDA2 workflow</span></div><span class="eyebrow">Tutorial 03</span><h1>Score LDA2 LC-MS² results.</h1><p class="lead">Export Lipid Data Analyzer results, map the required files, choose the LC-MS TargetDB profile, and verify the scored output.</p><ul class="meta-list"><li>Intermediate</li><li>About 20 minutes</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul></div></header>
+    <section class="section"><div class="container tutorial-layout">
+      <article class="tutorial-content">
+        <section id="prerequisites"><h2>Prerequisites</h2><ul class="checklist"><li>LDA2 analysis is complete</li><li>Result exports use a consistent tab-delimited format</li><li>A sample list is available</li><li>The LC-MS acquisition and adduct conventions are known</li></ul><p>If any file role is unfamiliar, review <a href="prepare-inputs.html">Prepare required inputs</a>.</p></section>
+        <section id="export"><h2>1. Export from LDA2</h2><ol class="step-list"><li><h3>Finalize LDA2 identifications</h3><p>Use the same LDA2 method and nomenclature across every sample in the LipidProphet run.</p></li><li><h3>Export tab-delimited results</h3><p>Write one or more result files to a dedicated <code>search-results</code> folder. Keep the same extension for every file.</p></li><li><h3>Freeze the export set</h3><p>Do not edit result cells manually after export. If LDA2 settings change, regenerate the complete set.</p></li></ol></section>
+        <section id="map"><h2>2. Map files in LipidProphet</h2><ol class="step-list"><li><h3>Select all LDA2 result files</h3><p>Add only files from the same analysis configuration and source format.</p></li><li><h3>Select the sample list</h3><p>Choose the <code>.xlsx</code> workbook that maps every export to its sample context.</p></li><li><h3>Choose the output path</h3><p>Use a new writable <code>.tab</code> file for the LipidProphet results.</p></li></ol></section>
+        <section id="targets"><h2>3. Configure the target database</h2><p>Choose the <strong>LC-MS</strong> profile. Select <strong>Acetate ions present</strong> only when the negative-mode method used acetate; otherwise leave it off for formate.</p></section>
+        <section id="settings"><h2>4. Review matching settings</h2><p>Check precursor and fragment m/z tolerances, retention-time tolerance, whether an MS1 precursor is obligatory, and how matching IDs should be combined. Values should reflect the acquisition and LDA2 processing method; they should not be copied from a generic website default.</p><a class="card-link" href="settings.html">Understand every setting</a></section>
+        <section id="process"><h2>5. Process and validate</h2><ol class="step-list"><li><h3>Save the workspace</h3><p>Write a new <code>input_values.txt</code> before processing so the configuration can be reviewed or automated later.</p></li><li><h3>Run LipidProphet</h3><p>Choose a new <code>.tab</code> output and start processing.</p></li><li><h3>Spot-check the result</h3><p>Confirm sample coverage, lipid/adduct naming, plausible row counts, and non-empty LP score fields.</p></li></ol><div class="callout"><strong>Expected result</strong><p>A confidence-scored, tab-delimited result set for the LDA2 LC-MS² analysis, plus the workspace needed to reproduce the run.</p></div></section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="prepare-inputs.html"><small>Previous tutorial</small>← Prepare inputs</a><a href="msdial-workflow.html"><small>Next tutorial</small>MS-DIAL → LC-MS² →</a></nav>
+      </article>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#export">Export from LDA2</a></li><li><a href="#map">Map files</a></li><li><a href="#targets">Target database</a></li><li><a href="#settings">Settings</a></li><li><a href="#process">Process &amp; validate</a></li></ol></aside>
+    </div></section>
+  </main>
+  <site-footer root=".."></site-footer>
+</body>
+</html>

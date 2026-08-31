@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prepare the standard LipidProphet search results, sample list, generated TargetDB profile, workspace, and output path.">
+  <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/prepare-inputs.html">
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <title>Prepare required inputs | LipidProphet</title>
+</head>
+<body>
+  <site-header active="tutorials" root=".."></site-header>
+  <main id="main-content">
+    <header class="page-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Prepare inputs</span></div><span class="eyebrow">Tutorial 02</span><h1>Prepare the files LipidProphet needs.</h1><p class="lead">Understand the standard input fields, select the generated TargetDB profile, and run a preflight check before processing.</p><ul class="meta-list"><li>Beginner</li><li>About 15 minutes</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul></div></header>
+    <section class="section"><div class="container tutorial-layout">
+      <article class="tutorial-content">
+        <section id="overview"><h2>The standard input map</h2><p>LipidProphet combines search-engine results and a sample list with a TargetDB profile, a workspace file, and an output path. The exact search-result columns depend on the source workflow, but the file roles stay the same.</p><dl class="definition-list"><dt>Workspace file</dt><dd>An <code>input_values.txt</code> file that loads or records the paths and standard settings used for the run.</dd><dt>Search results</dt><dd>One or more <code>.tab</code> or <code>.txt</code> files. All files in one run must use the same extension and source format.</dd><dt>Sample list</dt><dd>One <code>.xlsx</code> workbook mapping result files and experimental samples.</dd><dt>TargetDB profile</dt><dd>The LC-MS, Direct-infusion MS, or MS-imaging profile that defines the target space used for processing.</dd><dt>Output</dt><dd>A new writable <code>.tab</code> path for confidence-scored results.</dd></dl></section>
+        <section id="results"><h2>1. Search-engine results</h2><ol class="step-list"><li><h3>Export one consistent format</h3><p>Use the matching tutorial for <a href="lda2-workflow.html">LDA2</a>, <a href="msdial-workflow.html">MS-DIAL</a>, or <a href="shotgun-msall.html">ALEX123 direct infusion</a>. Do not mix formats in a run.</p></li><li><h3>Keep the file extension consistent</h3><p>All selected files must end in <code>.tab</code> or all must end in <code>.txt</code>.</p></li><li><h3>Check identifiers</h3><p>Sample names, lipid/adduct labels, and result filenames must agree with the sample list and selected TargetDB profile.</p></li></ol></section>
+        <section id="samples"><h2>2. Sample list</h2><p>The sample list is an Excel workbook that connects selected result files to their experimental context.</p><ul class="checklist"><li>The sample list ends in <code>.xlsx</code></li><li>Workbook headers have not been renamed</li><li>Each selected result file maps to a sample</li><li>Sample identifiers match the result filenames</li><li>Each result is represented exactly once</li></ul></section>
+        <section id="targets"><h2>3. Select the TargetDB profile</h2><p>Select the profile that matches the experiment: <strong>LC-MS</strong>, <strong>Direct-infusion MS</strong>, or <strong>MS imaging</strong>. For negative-mode targets, select <strong>Acetate ions present</strong> only when acetate was used; otherwise LipidProphet uses formate for the affected ions.</p><div class="callout callout-warning"><strong>Profile choice changes the target space</strong><p>Do not select Direct-infusion MS merely because the instrument acquired MS² data. The profile must match the analytical workflow used to generate the search results.</p></div></section>
+        <section id="folders"><h2>4. Organize the analysis folder</h2><pre data-copy><code>my-study/
+├── inputs/
+│   ├── search-results/
+│   └── sample-list.xlsx
+├── workspace/
+│   └── input_values.txt
+└── results/
+    └── lipidprophet_results.tab</code></pre><p>Relative organization makes handoff easier, but saved workspace paths may still be absolute. Avoid moving the folder after validating the workspace.</p></section>
+        <section id="preflight"><h2>5. Preflight checklist</h2><ul class="checklist"><li>Every input path points to a readable file</li><li>Search result files use one extension and one format</li><li>The sample list is an <code>.xlsx</code> workbook</li><li>The generated TargetDB profile matches the acquisition</li><li>The acetate/formate choice matches the method</li><li>The workspace path ends in <code>.txt</code></li><li>The output folder exists and is writable</li><li>The output filename ends in <code>.tab</code></li></ul><div class="callout"><strong>Expected result</strong><p>A complete, internally consistent standard input set that can be saved as an <code>input_values.txt</code> workspace and reused for GUI or CLI processing.</p></div></section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="quick-start.html"><small>Previous tutorial</small>← Quick start</a><a href="lda2-workflow.html"><small>Next tutorial</small>LDA2 → LC-MS² →</a></nav>
+      </article>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#overview">Input map</a></li><li><a href="#results">Search results</a></li><li><a href="#samples">Sample list</a></li><li><a href="#targets">TargetDB profile</a></li><li><a href="#folders">Folder layout</a></li><li><a href="#preflight">Preflight checklist</a></li></ol></aside>
+    </div></section>
+  </main>
+  <site-footer root=".."></site-footer>
+</body>
+</html>

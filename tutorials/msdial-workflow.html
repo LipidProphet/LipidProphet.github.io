@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prepare MS-DIAL text exports and score an LC-MS² dataset with LipidProphet.">
+  <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/msdial-workflow.html">
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <title>MS-DIAL to LC-MS² | LipidProphet tutorial</title>
+</head>
+<body>
+  <site-header active="tutorials" root=".."></site-header>
+  <main id="main-content">
+    <header class="page-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>MS-DIAL workflow</span></div><span class="eyebrow">Tutorial 04</span><h1>Score MS-DIAL LC-MS² results.</h1><p class="lead">Export compatible MS-DIAL text results, align file and lipid naming, and process the analysis with an LC-MS TargetDB.</p><ul class="meta-list"><li>Intermediate</li><li>About 20 minutes</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul></div></header>
+    <section class="section"><div class="container tutorial-layout">
+      <article class="tutorial-content">
+        <section id="prerequisites"><h2>Prerequisites</h2><ul class="checklist"><li>MS-DIAL peak picking and annotation are complete</li><li>Exports are available as supported tab-delimited <code>.txt</code> files</li><li>Lipid and adduct terminology follows the supported export convention</li><li>The sample list covers every exported file</li></ul><div class="callout callout-warning"><strong>Version-sensitive format</strong><p>MS-DIAL export columns can change between releases. LipidProphet was validated with MS-DIAL 5.1.230912. If a newer export fails, record its version in the issue report.</p></div></section>
+        <section id="export"><h2>1. Export compatible text results</h2><ol class="step-list"><li><h3>Use one MS-DIAL project configuration</h3><p>Keep polarity, identification settings, and export structure consistent across files in one LipidProphet run.</p></li><li><h3>Export tab-delimited text</h3><p>Write each supported result as <code>.txt</code>. Do not mix <code>.txt</code> and <code>.tab</code> in the same run.</p></li><li><h3>Keep original headers</h3><p>Do not rename, reorder, or translate export columns before LipidProphet parses them.</p></li></ol></section>
+        <section id="normalize"><h2>2. Check naming and adducts</h2><p>Before opening LipidProphet, review representative annotations for supported lipid and adduct nomenclature.</p><ul class="checklist"><li>Lipid class names follow the supported convention</li><li>Adduct notation is consistent</li><li>Hydroxylation and chain notation follow the supported export convention</li><li>Sample names match the sample-list entries</li></ul><p>LipidProphet contains MS-DIAL-specific parsing and nomenclature mapping, but ambiguous or custom labels may still need a corrected upstream export.</p></section>
+        <section id="configure"><h2>3. Configure LipidProphet</h2><ol class="step-list"><li><h3>Add every MS-DIAL text file</h3><p>Select only the files belonging to this analysis.</p></li><li><h3>Add the sample list</h3><p>Choose the <code>.xlsx</code> workbook that maps every export to its sample context.</p></li><li><h3>Choose the LC-MS profile</h3><p>Select the TargetDB profile that matches the LC-MS acquisition.</p></li><li><h3>Set acetate/formate correctly</h3><p>Select acetate only when it was present in the negative-mode method.</p></li></ol></section>
+        <section id="process"><h2>4. Process and inspect</h2><p>Save a new workspace, choose a writable <code>.tab</code> output, and run the analysis. On completion, inspect a small set of familiar annotations and confirm sample coverage and score fields.</p><div class="callout"><strong>Expected result</strong><p>A tab-delimited LipidProphet result table derived from the consistent MS-DIAL export set, with a saved workspace recording all paths and settings.</p></div></section>
+        <section id="problems"><h2>Common MS-DIAL problems</h2><dl class="definition-list"><dt>Unsupported header</dt><dd>Re-export without editing column names and record the MS-DIAL version.</dd><dt>Unknown lipid/adduct</dt><dd>Compare the export notation with the supported mappings and selected TargetDB profile.</dd><dt>Missing sample</dt><dd>Correct the sample list so every selected export is mapped exactly once.</dd><dt>Mixed file types</dt><dd>Move unrelated exports out of the selected set; all result files must use one extension.</dd></dl></section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="lda2-workflow.html"><small>Previous tutorial</small>← LDA2 → LC-MS²</a><a href="shotgun-msall.html"><small>Next tutorial</small>ALEX123 / Shotgun MS<sup>ALL</sup> →</a></nav>
+      </article>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#export">Export text results</a></li><li><a href="#normalize">Check naming</a></li><li><a href="#configure">Configure</a></li><li><a href="#process">Process &amp; inspect</a></li><li><a href="#problems">Common problems</a></li></ol></aside>
+    </div></section>
+  </main>
+  <site-footer root=".."></site-footer>
+</body>
+</html>
