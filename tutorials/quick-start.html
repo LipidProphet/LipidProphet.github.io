@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Install LipidProphet, load a prepared workspace, and create your first confidence-scored result table.">
+  <meta name="description" content="Download a study inside LipidProphet, run the LC–MS liver example, and compare the scored table with its packaged reference.">
   <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/quick-start.html">
-  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js?v=71fd16e3ab50" defer></script>
   <title>Quick start tutorial | LipidProphet</title>
 </head>
 <body>
@@ -12,21 +12,46 @@
   <main id="main-content">
     <header class="page-hero"><div class="container">
       <div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Quick start</span></div>
-      <span class="eyebrow">Tutorial 01</span><h1>Run LipidProphet for the first time.</h1>
-      <p class="lead">Install the application, open a prepared workspace, validate its inputs, and export a confidence-scored table.</p>
-      <ul class="meta-list"><li>Beginner</li><li>About 10 minutes</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul>
+      <h1>Run your first LipidProphet study.</h1><p class="lead">Go from a prepared dataset to a score plot and a result table you can check against the supplied reference. This walkthrough uses LC–MS² data from mouse liver analyzed with Lipid Data Analyzer (LDA).</p>
+      <ul class="meta-list"><li>Beginner</li><li>About 10 minutes</li><li>LipidProphet 1.0</li></ul>
     </div></header>
-    <section class="section"><div class="container tutorial-layout">
+    <div class="section"><div class="container tutorial-layout">
       <article class="tutorial-content">
-        <section id="before"><h2>Before you begin</h2><p>You need a supported 64-bit Windows, macOS, or Linux system and a prepared LipidProphet workspace. If you are starting from raw search-engine exports, complete <a href="prepare-inputs.html">Prepare required inputs</a> first.</p><ul class="checklist"><li>LipidProphet is installed</li><li>Your input files are stored in a stable project folder</li><li>You know where the result <code>.tab</code> file should be written</li><li>For large datasets, about 16 GB of memory is available</li></ul><div class="callout callout-tip"><strong>Keep one folder per analysis</strong><p>Place inputs, the saved <code>input_values.txt</code> workspace, and outputs under one analysis folder. This makes a run easier to reproduce and archive.</p></div></section>
-        <section id="install"><h2>1. Install and start</h2><ol class="step-list"><li><h3>Download the correct build</h3><p>Use the <a href="../downloads.html">Downloads page</a> to choose Windows, macOS Intel, macOS Apple silicon, or a Linux package.</p></li><li><h3>Complete installation</h3><p>Follow the platform installer. On Windows, the installer may request administrator privileges.</p></li><li><h3>Launch LipidProphet</h3><p>Start the graphical application from your application menu or installation directory. The main window should open without a terminal.</p></li></ol><div class="callout callout-tip"><strong>Start on the Input / Compute tab</strong><p>The main controls are the workspace, sample list, search-engine results, output path, TargetDB profile, matching settings, and Compute button.</p></div></section>
-        <section id="workspace"><h2>2. Load or name a workspace</h2><ol class="step-list"><li><h3>Select the workspace file</h3><p>Choose an existing <code>input_values.txt</code> to load it, or name a new <code>.txt</code> file that LipidProphet can save before processing.</p></li><li><h3>Confirm every path</h3><p>Verify the search results, sample list, and output path. Moved or renamed files must be selected again.</p></li><li><h3>Review the generated TargetDB profile</h3><p>Choose <strong>LC-MS</strong>, <strong>Direct-infusion MS</strong>, or <strong>MS imaging</strong> to match the acquisition, then set acetate only when acetate ions were present.</p></li><li><h3>Review matching settings</h3><p>Confirm precursor and fragment m/z tolerances, retention-time handling, the MS1 precursor requirement, and any result-combination choice.</p></li></ol><div class="callout callout-warning"><strong>Do not reuse a workspace blindly</strong><p>A workspace stores paths and settings, not the source data itself. Confirm that it points to the intended study before processing.</p></div></section>
-        <section id="run"><h2>3. Process and monitor the data</h2><ol class="step-list"><li><h3>Choose a new output name</h3><p>Write the result to a <code>.tab</code> file in a writable folder. Use a name that records the study and analysis date or configuration.</p></li><li><h3>Select Compute</h3><p>LipidProphet applies the selected TargetDB profile, parses the supporting files and search results, calculates LP scores, and exports the result table.</p></li><li><h3>Read the Console tab</h3><p>The interface switches to the console and reports each stage. A healthy run shows the TargetDB entry count, parsed result filenames, score calculation, export, and elapsed time.</p></li><li><h3>Confirm completion</h3><p>Wait for <strong>All done!</strong>. If a stage fails, keep the exact console message and the referenced log file for troubleshooting.</p></li></ol><div class="callout"><strong>The console is the run checklist</strong><p>TargetDB setup and every major processing stage should complete before <strong>All done!</strong> appears.</p></div></section>
-        <section id="verify"><h2>4. Verify the output</h2><p>After a successful run, LipidProphet opens the <strong>QC: LP score plot</strong> tab. Review it first, then open the result <code>.tab</code> file in a spreadsheet or analysis environment and check that it is non-empty, the expected samples/classes are present, and score columns contain values.</p><ul class="checklist"><li>The QC plot tab was created</li><li>The result table exists at the selected path</li><li>No parser or missing-file error was shown</li><li>The row count is plausible for the study</li><li>The saved workspace reflects the settings actually used</li></ul><div class="callout"><strong>Expected result</strong><p>A QC plot, a tab-delimited LipidProphet result table, and a saved workspace that can reproduce the run.</p></div><p><a class="card-link" href="results.html">Learn how to read the QC plot and result table</a></p></section>
-        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="index.html"><small>Back</small>All tutorials</a><a href="prepare-inputs.html"><small>Next tutorial</small>Prepare required inputs →</a></nav>
+        <section id="install">
+          <h2 id="before">1. Open LipidProphet</h2>
+          <p>Choose the <a href="../downloads.html">download for your operating system</a> and launch the desktop application. On the <strong>Input / Compute</strong> tab, select <strong>Download study dataset…</strong>.</p>
+          <p>Each of the seven study packages includes processed search results, a sample list, saved settings, and a reference table. You can start before preparing any files of your own.</p>
+        </section>
+        <section id="workspace">
+          <h2>2. Download and open the liver study</h2>
+          <ol class="step-list">
+            <li><h3>Pick the example</h3><p>Select <strong>LC-MS liver (LDA)</strong> in the study list. The download is about 40 MB and includes the positive- and negative-ion search results.</p></li>
+            <li><h3>Choose a folder</h3><p>Under <strong>Save studies in</strong>, select a writable folder and click <strong>Download and open</strong>. LipidProphet loads the workspace and fills in the input paths. Selecting the same study and folder later reopens the local copy, including offline.</p></li>
+          </ol>
+          <figure class="tutorial-figure">
+            <a class="capture-link" href="../img/tutorials/lipidprophet-study-chooser.png" aria-label="Open full-resolution screenshot: Study chooser with LC-MS liver (LDA) selected"><img src="../img/tutorials/lipidprophet-study-chooser.png" width="2956" height="1008" alt="Study chooser with LC-MS liver (LDA) selected" loading="lazy" decoding="async"></a>
+            <figcaption>Select LC-MS liver (LDA) and a destination folder. The app opens the supplied workspace. <a href="../img/tutorials/lipidprophet-study-chooser.png">Full-resolution PNG</a></figcaption>
+          </figure>
+        </section>
+        <section id="run">
+          <h2>3. Check the inputs and select Compute</h2>
+          <p>For this study, <strong>Input / Compute</strong> lists a sample list and two LDA <code>.tab</code> files, one for each ion polarity. The workspace selects the <strong>LC-MS</strong> profile, sets the precursor and fragment tolerances to 0.01 and 0.2 Da, respectively, and sets the retention-time tolerance to 0.15 minutes.</p>
+          <figure class="tutorial-figure">
+            <a class="capture-link" href="../img/tutorials/lipidprophet-input-compute-hires.png" aria-label="Open full-resolution screenshot: LC–MS liver input form showing the positive- and negative-ion LDA tables and the LC-MS profile"><img src="../img/tutorials/lipidprophet-input-compute-hires.png" width="4480" height="2896" alt="LC–MS liver input form showing the positive- and negative-ion LDA tables and the LC-MS profile" loading="lazy" decoding="async"></a>
+            <figcaption>The liver workspace fills in the two LDA result files and the matching settings. The paths reflect the folder you choose. <a href="../img/tutorials/lipidprophet-input-compute-hires.png">Full-resolution PNG</a></figcaption>
+          </figure>
+          <p>Click <strong>Compute</strong>. Follow progress in <strong>Console</strong>. On completion, the console reports <strong>All done!</strong> and the application opens <strong>QC: LP score plot</strong>.</p>
+        </section>
+        <section id="verify">
+          <h2>4. Compare your table with the reference</h2>
+          <p>Open <code>lcms-liver/results/LipidProphet_results.tab</code> as tab-separated text. The packaged reference is <code>lcms-liver/reference/results.tab</code>. With the supplied workspace and the same build, the files should match.</p>
+          <p>Use the <a href="results.html#qc">QC plot</a> to explore a cutoff. Then filter <strong>LipidProphet score</strong> in the exported table to see which identifications meet it.</p>
+          <p>Ready to score your own samples? <a href="prepare-inputs.html">Prepare the sample list and search results.</a></p>
+        </section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="index.html"><small>Previous</small>All tutorials</a><a href="prepare-inputs.html"><small>Next</small>Prepare your inputs →</a></nav>
       </article>
-      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#before">Before you begin</a></li><li><a href="#install">Install and start</a></li><li><a href="#workspace">Workspace &amp; inputs</a></li><li><a href="#run">Process &amp; console</a></li><li><a href="#verify">Verify the output</a></li></ol></aside>
-    </div></section>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#install">Install the app</a></li><li><a href="#workspace">Choose a study</a></li><li><a href="#run">Compute the scores</a></li><li><a href="#verify">Check the output</a></li></ol></aside>
+    </div></div>
   </main>
   <site-footer root=".."></site-footer>
 </body>

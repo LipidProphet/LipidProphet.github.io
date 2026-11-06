@@ -4,37 +4,40 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Run a validated LipidProphet workspace from the command line for reproducible automation.">
   <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/cli.html">
-  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js?v=71fd16e3ab50" defer></script>
   <title>CLI and automation | LipidProphet tutorial</title>
 </head>
 <body>
   <site-header active="tutorials" root=".."></site-header>
   <main id="main-content">
-    <header class="page-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>CLI</span></div><span class="eyebrow">Tutorial 08</span><h1>Repeat a validated run from the command line.</h1><p class="lead">Use the standard GUI to validate a workspace once, then run it headlessly with the generated TargetDB, an explicit output, and a saved copy of the effective settings.</p><ul class="meta-list"><li>Advanced</li><li>About 15 minutes</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul></div></header>
-    <section class="section"><div class="container tutorial-layout">
+    <header class="page-hero"><div class="container">
+      <div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Command line</span></div>
+      <h1>Repeat a workspace from the command line.</h1><p class="lead">Once a workspace runs in the desktop app, you can score the same inputs from a script and save the exact settings used.</p>
+      <ul class="meta-list"><li>Command line</li><li>Java 21</li></ul>
+    </div></header>
+    <div class="section"><div class="container tutorial-layout">
       <article class="tutorial-content">
-        <section id="requirements"><h2>Requirements</h2><ul class="checklist"><li><code>LipidProphet.jar</code> and its runtime dependency JARs are available</li><li>Java 21 is installed or provided by the application runtime</li><li>A GUI-validated <code>input_values.txt</code> exists</li><li>All paths in that workspace are readable on the machine running the command</li><li>The output directory already exists and is writable</li></ul><div class="callout callout-warning"><strong>Arguments select headless mode</strong><p>Starting the JAR without arguments opens the graphical interface. Passing arguments invokes the CLI path.</p></div></section>
-        <section id="help"><h2>1. Check the installed CLI</h2><pre data-copy><code>java -jar LipidProphet.jar --help</code></pre><p>The help output is the authoritative option list for your build.</p></section>
-        <section id="run"><h2>2. Run the standard generated TargetDB</h2><pre data-copy><code>java -jar LipidProphet.jar --cli \
-  --input-values input_values.txt \
-  --target-db-source memory \
-  --target-db-workflow lcms \
-  --target-db-acetate false \
-  --output LipidProphet_results_lcms.tab \
-  --save-input-values input_values_lcms_run.txt</code></pre><p>Keep <code>--target-db-source memory</code> for the documented tutorial workflows.</p></section>
-        <section id="profiles"><h2>3. Match the standard profile</h2><dl class="definition-list"><dt>LC-MS</dt><dd>Use <code>--target-db-workflow lcms</code>.</dd><dt>Direct-infusion MS</dt><dd>Use <code>--target-db-workflow msall</code>.</dd><dt>MS imaging</dt><dd>Use <code>--target-db-workflow ms-imaging</code>.</dd><dt>Acetate/formate</dt><dd>Use <code>--target-db-acetate true</code> only for acetate; use <code>false</code> for formate.</dd></dl></section>
-        <section id="safety"><h2>4. Follow output safety rules</h2><dl class="definition-list"><dt>Distinct workspace</dt><dd><code>--save-input-values</code> must not replace the source workspace.</dd><dt>New outputs by default</dt><dd>Existing result or workspace files are rejected unless <code>--overwrite</code> is supplied.</dd><dt>Required extensions</dt><dd>Main output must end in <code>.tab</code>; saved workspace must end in <code>.txt</code>.</dd><dt>Same-format results</dt><dd>All search-engine results referenced by the workspace must use the same supported extension.</dd></dl><div class="callout callout-danger"><strong>Use <code>--overwrite</code> only in controlled pipelines</strong><p>Prefer unique, immutable output paths. Overwrite can replace result and saved-workspace files after validation.</p></div></section>
-        <section id="verify"><h2>5. Verify completion</h2><p>A successful command prints the resolved workspace, generated TargetDB source/profile, output, saved workspace, result-entry count, and elapsed time. Exit code <code>0</code> indicates success; argument/validation errors return <code>2</code>, and processing failures return <code>1</code>.</p><pre><code>LipidProphet CLI
-  workspace: ...
-  TargetDB source: memory
-  TargetDB workflow: LCMS
-  output: ...
-  saved workspace: ...
-All done! Entries: ...; overall processing time: ...</code></pre><div class="callout"><strong>Expected result</strong><p>A new <code>.tab</code> result and a distinct <code>.txt</code> workspace containing the effective configuration used by the headless run.</p></div></section>
-        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="results.html"><small>Previous tutorial</small>← Read the results</a><a href="troubleshooting.html"><small>Next tutorial</small>Troubleshooting →</a></nav>
+        <section id="requirements">
+          <h2>Locate the application and the workspace</h2>
+          <p>Use Java 21 and keep <code>LipidProphet.jar</code> with its packaged dependencies. Run the example from the directory containing the JAR. Replace the quoted paths with the actual locations of your study and an existing output folder.</p>
+          <pre id="help" data-copy><code>java -jar LipidProphet.jar --help</code></pre>
+        </section>
+        <section id="run">
+          <h2>Score the LC–MS liver example</h2>
+          <p>Use the workspace from the <a href="quick-start.html">quick start</a>. This command reads its acquisition settings and writes new filenames for both the table and the effective workspace.</p>
+          <pre data-copy><code>java -jar LipidProphet.jar --cli --input-values "lcms-liver/results/input_values.txt" --output "lcms-liver/results/cli_results.tab" --save-input-values "lcms-liver/results/cli_workspace.txt"</code></pre>
+          <p id="safety"><code>--input-values</code> and <code>--save-input-values</code> are required. The saved workspace must have a separate filename from the source. Choose fresh filenames for each run, or explicitly pass <code>--overwrite</code> to replace existing outputs.</p>
+          <p id="profiles">The workspace supplies the TargetDB profile. For an explicit override, <code>--target-db-workflow</code> accepts <code>lcms</code>, <code>msall</code>, or <code>ms-imaging</code>. The imaging profile has the same <a href="prepare-inputs.html#imaging">input requirements</a> as the graphical app.</p>
+        </section>
+        <section id="verify">
+          <h2>Check what the script produced</h2>
+          <p>A successful run prints <strong>All done!</strong>, the entry count, and the elapsed time. Exit code <code>0</code> indicates success. The example leaves its scored <code>.tab</code> file and effective <code>.txt</code> workspace together in the results folder.</p>
+          <p>Open the table and apply the same <a href="results.html#open">score and grouping rule</a> you would use for a graphical run.</p>
+        </section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="results.html"><small>Previous</small>Read the results</a><a href="troubleshooting.html"><small>Next</small>Troubleshooting →</a></nav>
       </article>
-      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#requirements">Requirements</a></li><li><a href="#help">Check help</a></li><li><a href="#run">Generated TargetDB</a></li><li><a href="#profiles">Standard profiles</a></li><li><a href="#safety">Safety rules</a></li><li><a href="#verify">Verify completion</a></li></ol></aside>
-    </div></section>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#requirements">Before you start</a></li><li><a href="#run">Run a workspace</a></li><li><a href="#verify">Check completion</a></li></ol></aside>
+    </div></div>
   </main>
   <site-footer root=".."></site-footer>
 </body>

@@ -15,7 +15,7 @@ Then open `http://127.0.0.1:8000/`. Do not preview the pages directly with `file
 ## Structure
 
 - `index.html`: homepage
-- `downloads.html`: installers, manual, and requirements
+- `downloads.html`: installers, study packages, and requirements
 - `publications.html`: scientific rationale and publication status
 - `contact.html`: support and issue-reporting paths
 - `tutorials/`: tutorial hub and individual workflows

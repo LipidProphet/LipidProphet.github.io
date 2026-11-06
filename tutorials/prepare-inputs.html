@@ -2,34 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Prepare the standard LipidProphet search results, sample list, generated TargetDB profile, workspace, and output path.">
+  <meta name="description" content="Prepare LipidProphet inputs, map measurements to replicate groups, adapt other search engines to the RDB format, and check MS imaging requirements.">
   <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/prepare-inputs.html">
-  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js?v=71fd16e3ab50" defer></script>
   <title>Prepare required inputs | LipidProphet</title>
 </head>
 <body>
   <site-header active="tutorials" root=".."></site-header>
   <main id="main-content">
-    <header class="page-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Prepare inputs</span></div><span class="eyebrow">Tutorial 02</span><h1>Prepare the files LipidProphet needs.</h1><p class="lead">Understand the standard input fields, select the generated TargetDB profile, and run a preflight check before processing.</p><ul class="meta-list"><li>Beginner</li><li>About 15 minutes</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul></div></header>
-    <section class="section"><div class="container tutorial-layout">
+    <header class="page-hero"><div class="container">
+      <div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Prepare inputs</span></div>
+      <h1>Prepare your own measurements for scoring.</h1><p class="lead">Bring the search results, a sample list that identifies your replicate measurements, and the acquisition settings used to collect them.</p>
+      <ul class="meta-list"><li>Beginner</li><li>LipidProphet 1.0</li></ul>
+    </div></header>
+    <div class="section"><div class="container tutorial-layout">
       <article class="tutorial-content">
-        <section id="overview"><h2>The standard input map</h2><p>LipidProphet combines search-engine results and a sample list with a TargetDB profile, a workspace file, and an output path. The exact search-result columns depend on the source workflow, but the file roles stay the same.</p><dl class="definition-list"><dt>Workspace file</dt><dd>An <code>input_values.txt</code> file that loads or records the paths and standard settings used for the run.</dd><dt>Search results</dt><dd>One or more <code>.tab</code> or <code>.txt</code> files. All files in one run must use the same extension and source format.</dd><dt>Sample list</dt><dd>One <code>.xlsx</code> workbook mapping result files and experimental samples.</dd><dt>TargetDB profile</dt><dd>The LC-MS, Direct-infusion MS, or MS-imaging profile that defines the target space used for processing.</dd><dt>Output</dt><dd>A new writable <code>.tab</code> path for confidence-scored results.</dd></dl></section>
-        <section id="results"><h2>1. Search-engine results</h2><ol class="step-list"><li><h3>Export one consistent format</h3><p>Use the matching tutorial for <a href="lda2-workflow.html">LDA2</a>, <a href="msdial-workflow.html">MS-DIAL</a>, or <a href="shotgun-msall.html">ALEX<sup>123</sup> direct infusion</a>. Do not mix formats in a run.</p></li><li><h3>Keep the file extension consistent</h3><p>All selected files must end in <code>.tab</code> or all must end in <code>.txt</code>.</p></li><li><h3>Check identifiers</h3><p>Sample names, lipid/adduct labels, and result filenames must agree with the sample list and selected TargetDB profile.</p></li></ol></section>
-        <section id="samples"><h2>2. Sample list</h2><p>The sample list is an Excel workbook that connects selected result files to their experimental context.</p><ul class="checklist"><li>The sample list ends in <code>.xlsx</code></li><li>Workbook headers have not been renamed</li><li>Each selected result file maps to a sample</li><li>Sample identifiers match the result filenames</li><li>Each result is represented exactly once</li></ul></section>
-        <section id="targets"><h2>3. Select the TargetDB profile</h2><p>Select the profile that matches the experiment: <strong>LC-MS</strong>, <strong>Direct-infusion MS</strong>, or <strong>MS imaging</strong>. For negative-mode targets, select <strong>Acetate ions present</strong> only when acetate was used; otherwise LipidProphet uses formate for the affected ions.</p><div class="callout callout-warning"><strong>Profile choice changes the target space</strong><p>Do not select Direct-infusion MS merely because the instrument acquired MS² data. The profile must match the analytical workflow used to generate the search results.</p></div></section>
-        <section id="folders"><h2>4. Organize the analysis folder</h2><pre data-copy><code>my-study/
-├── inputs/
-│   ├── search-results/
-│   └── sample-list.xlsx
-├── workspace/
-│   └── input_values.txt
-└── results/
-    └── lipidprophet_results.tab</code></pre><p>Relative organization makes handoff easier, but saved workspace paths may still be absolute. Avoid moving the folder after validating the workspace.</p></section>
-        <section id="preflight"><h2>5. Preflight checklist</h2><ul class="checklist"><li>Every input path points to a readable file</li><li>Search result files use one extension and one format</li><li>The sample list is an <code>.xlsx</code> workbook</li><li>The generated TargetDB profile matches the acquisition</li><li>The acetate/formate choice matches the method</li><li>The workspace path ends in <code>.txt</code></li><li>The output folder exists and is writable</li><li>The output filename ends in <code>.tab</code></li></ul><div class="callout"><strong>Expected result</strong><p>A complete, internally consistent standard input set that can be saved as an <code>input_values.txt</code> workspace and reused for GUI or CLI processing.</p></div></section>
-        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="quick-start.html"><small>Previous tutorial</small>← Quick start</a><a href="lda2-workflow.html"><small>Next tutorial</small>LDA2 → LC-MS² →</a></nav>
+        <section id="map">
+          <h2 id="overview">What goes into a run?</h2>
+          <p>LipidProphet uses your search engine’s candidate identifications and a matching spectral library to determine which fragments to expect. The built-in <strong>TargetDB profile</strong> sets up the target database for the acquisition.</p>
+          <p>On <strong>Input / Compute</strong>, select a workspace file (<code>.txt</code>), your sample list (<code>.xlsx</code>), the search results, and an output file (<code>.tab</code>). The workspace records the file paths and settings so you can repeat the run.</p>
+        </section>
+        <section id="results">
+          <h2>Export one search format per run</h2>
+          <dl class="definition-list">
+            <dt>Lipid Data Analyzer</dt><dd>Use the <strong>rdb</strong> export in LDA’s statistical analysis view. One summary can contain many raw measurement IDs. <a href="lda2-workflow.html">LDA workflow</a></dd>
+            <dt>ALEX<sup>123</sup></dt><dd>Select the RDB <code>.tab</code> files carrying precursor and fragment evidence. One <code>RAW_ID</code> in the sample list identifies one measurement. <a href="shotgun-msall.html">Shotgun workflow</a></dd>
+            <dt>MS-DIAL</dt><dd>Export <strong>Peak list → Text</strong> for each individual analysis. LipidProphet uses the <code>.txt</code> filename stem to match that measurement to the sample list. <a href="msdial-workflow.html">MS-DIAL workflow</a></dd>
+          </dl>
+        </section>
+        <section id="other-search-engines">
+          <h2>Use results from other search engines</h2>
+          <p>Export each measurement’s precursor and MS² fragment detections in a tab-delimited RDB (<code>.tab</code>). If your engine uses a different format, convert its output to match an LDA or ALEX<sup>123</sup> input table. The <a href="../downloads.html#studies">liver study packages</a> provide examples with the headers and row structure to use.</p>
+          <dl class="definition-list">
+            <dt>Measurements and candidates</dt><dd>Preserve each measurement’s <code>RAW_ID</code>, lipid class, species and molecular species, adduct, charge, polarity, and precursor <em>m/z</em> values. For LC–MS data, include the retention-time group.</dd>
+            <dt>Detected fragments</dt><dd>Supply fragment <em>m/z</em> values and intensities, and use ALEX<sup>123</sup> fragment names so they match LipidProphet’s target database for that lipid, adduct, and polarity. In the LDA liver example, <code>FA 18:2(+O){279.233}</code> gives the fragment name followed by its <em>m/z</em>. See the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0188394">fragment nomenclature paper by Pauling et al. (2017)</a>.</dd>
+            <dt>Replicate groups</dt><dd>Match the <code>RAW_ID</code> values to the <code>SampleList</code> worksheet and provide at least three measurements per scoring group. <a href="#samples">Set up the sample list.</a></dd>
+          </dl>
+          <p>To get started, <a href="../contact.html#jurgen">contact the LipidProphet team</a> with the name and version of your search engine and a few representative export rows. We can help map your fields and fragment labels.</p>
+        </section>
+        <section id="samples">
+          <h2>Map measurements to scoring groups</h2>
+          <p>Create a worksheet named <code>SampleList</code> in an <code>.xlsx</code> workbook. Give each measurement a row and use these exact column names.</p>
+          <dl class="definition-list">
+            <dt><code>RAW_ID</code></dt><dd>The measurement identifier from an LDA or ALEX<sup>123</sup> table, or the MS-DIAL peak-list filename without <code>.txt</code>.</dd>
+            <dt><code>Acquisition_group</code></dt><dd>The measurement series or acquisition setup. Group measurements whose detection frequencies should be evaluated together.</dd>
+            <dt><code>Sample_type</code></dt><dd>The tissue, condition, or other biological group. Give control and treated samples distinct labels if you want their scores calculated separately.</dd>
+          </dl>
+          <div class="callout callout-tip"><strong>Plan for at least three replicate measurements per scoring group.</strong><p>LipidProphet scores each lipid using the measurements that share the same sample type, acquisition group, and ion polarity. It counts distinct <code>RAW_ID</code> values within that group.</p></div>
+        </section>
+        <section id="targetdb">
+          <h2 id="targets">Match the profile to your experiment</h2>
+          <p>Choose <strong>LC-MS</strong> for chromatography or <strong>Direct-infusion MS</strong> for shotgun MS<sup>ALL</sup>. Select <strong>Acetate ions present</strong> if your method used acetate. The other setting uses formate for the affected negative-mode targets. Use the mass tolerances from your search. <a href="settings.html">See the matching settings.</a></p>
+        </section>
+        <section id="imaging">
+          <h2>MS imaging input requirements</h2>
+          <p>Select <strong>MS imaging</strong> for an imaging experiment. Supply MS1 precursor and MS² fragment evidence in a supported search-engine export, a matching spectral database, and a sample list. At least three analyses per scoring group are needed for the individual-fragment confidence threshold used in the complementarity test.</p>
+        </section>
+        <section id="folder">
+          <h2 id="folders">Keep the workspace with its inputs</h2>
+          <p>Choose a writable results folder. When you select <strong>Compute</strong>, LipidProphet saves the settings used for the run. A downloaded study provides these files in a portable folder:</p>
+          <pre><code>lcms-liver/
+  inputs/                         Search results and SampleList.xlsx
+  input_values.txt                Packaged workspace
+  reference/results.tab           Supplied reference output
+  results/input_values.txt        Workspace opened by the app
+  results/LipidProphet_results.tab</code></pre>
+          <p id="preflight">Keep the folder structure when moving a study so that its relative file paths continue to resolve.</p>
+        </section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="quick-start.html"><small>Previous</small>Quick start</a><a href="lda2-workflow.html"><small>Next</small>LDA workflow →</a></nav>
       </article>
-      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#overview">Input map</a></li><li><a href="#results">Search results</a></li><li><a href="#samples">Sample list</a></li><li><a href="#targets">TargetDB profile</a></li><li><a href="#folders">Folder layout</a></li><li><a href="#preflight">Preflight checklist</a></li></ol></aside>
-    </div></section>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#map">Inputs at a glance</a></li><li><a href="#results">Search result files</a></li><li><a href="#other-search-engines">Other search engines</a></li><li><a href="#samples">Sample list and replicates</a></li><li><a href="#targetdb">Acquisition profile</a></li><li><a href="#imaging">MS imaging requirements</a></li><li><a href="#folder">Workspace and output</a></li></ol></aside>
+    </div></div>
   </main>
   <site-footer root=".."></site-footer>
 </body>

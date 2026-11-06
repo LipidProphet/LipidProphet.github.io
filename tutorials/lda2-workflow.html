@@ -4,25 +4,45 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Use LDA2 LC-MS² result exports as input to a reproducible LipidProphet workflow.">
   <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/lda2-workflow.html">
-  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js?v=71fd16e3ab50" defer></script>
   <title>LDA2 to LC-MS² | LipidProphet tutorial</title>
 </head>
 <body>
   <site-header active="tutorials" root=".."></site-header>
   <main id="main-content">
-    <header class="page-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>LDA2 workflow</span></div><span class="eyebrow">Tutorial 03</span><h1>Score LDA2 LC-MS² results.</h1><p class="lead">Export Lipid Data Analyzer results, map the required files, choose the LC-MS TargetDB profile, and verify the scored output.</p><ul class="meta-list"><li>Intermediate</li><li>About 20 minutes</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul></div></header>
-    <section class="section"><div class="container tutorial-layout">
+    <header class="page-hero"><div class="container">
+      <div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>LDA workflow</span></div>
+      <h1>Score LC–MS² results from Lipid Data Analyzer.</h1><p class="lead">LDA can summarize many measurements in an RDB export. LipidProphet uses the raw measurement IDs within that file to score candidates across replicates.</p>
+      <ul class="meta-list"><li>LDA</li><li>LC–MS²</li></ul>
+    </div></header>
+    <div class="section"><div class="container tutorial-layout">
       <article class="tutorial-content">
-        <section id="prerequisites"><h2>Prerequisites</h2><ul class="checklist"><li>LDA2 analysis is complete</li><li>Result exports use a consistent tab-delimited format</li><li>A sample list is available</li><li>The LC-MS acquisition and adduct conventions are known</li></ul><p>If any file role is unfamiliar, review <a href="prepare-inputs.html">Prepare required inputs</a>.</p></section>
-        <section id="export"><h2>1. Export from LDA2</h2><ol class="step-list"><li><h3>Finalize LDA2 identifications</h3><p>Use the same LDA2 method and nomenclature across every sample in the LipidProphet run.</p></li><li><h3>Export tab-delimited results</h3><p>Write one or more result files to a dedicated <code>search-results</code> folder. Keep the same extension for every file.</p></li><li><h3>Freeze the export set</h3><p>Do not edit result cells manually after export. If LDA2 settings change, regenerate the complete set.</p></li></ol></section>
-        <section id="map"><h2>2. Map files in LipidProphet</h2><ol class="step-list"><li><h3>Select all LDA2 result files</h3><p>Add only files from the same analysis configuration and source format.</p></li><li><h3>Select the sample list</h3><p>Choose the <code>.xlsx</code> workbook that maps every export to its sample context.</p></li><li><h3>Choose the output path</h3><p>Use a new writable <code>.tab</code> file for the LipidProphet results.</p></li></ol></section>
-        <section id="targets"><h2>3. Configure the target database</h2><p>Choose the <strong>LC-MS</strong> profile. Select <strong>Acetate ions present</strong> only when the negative-mode method used acetate; otherwise leave it off for formate.</p></section>
-        <section id="settings"><h2>4. Review matching settings</h2><p>Check precursor and fragment m/z tolerances, retention-time tolerance, whether an MS1 precursor is obligatory, and how matching IDs should be combined. Values should reflect the acquisition and LDA2 processing method; they should not be copied from a generic website default.</p><a class="card-link" href="settings.html">Understand every setting</a></section>
-        <section id="process"><h2>5. Process and validate</h2><ol class="step-list"><li><h3>Save the workspace</h3><p>Write a new <code>input_values.txt</code> before processing so the configuration can be reviewed or automated later.</p></li><li><h3>Run LipidProphet</h3><p>Choose a new <code>.tab</code> output and start processing.</p></li><li><h3>Spot-check the result</h3><p>Confirm sample coverage, lipid/adduct naming, plausible row counts, and non-empty LP score fields.</p></li></ol><div class="callout"><strong>Expected result</strong><p>A confidence-scored, tab-delimited result set for the LDA2 LC-MS² analysis, plus the workspace needed to reproduce the run.</p></div></section>
-        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="prepare-inputs.html"><small>Previous tutorial</small>← Prepare inputs</a><a href="msdial-workflow.html"><small>Next tutorial</small>MS-DIAL → LC-MS² →</a></nav>
+        <section id="export">
+          <h2>1. Export the RDB summary</h2>
+          <p id="prerequisites">Complete the LDA search and load its result files in <strong>Statistical analysis</strong>. Review the retention-time grouping for your method. Use <strong>rdb</strong> to export the classes as a <code>.tab</code> summary. Keep the raw file identifiers and upstream headers intact.</p>
+        </section>
+        <section id="map">
+          <h2>2. Connect the results to the sample list</h2>
+          <p>In LipidProphet, select the RDB file or files under <strong>Search engine results</strong>. In the <code>SampleList</code> worksheet, match <code>RAW_ID</code> to the identifiers <em>inside</em> the RDB. Set <code>Sample_type</code> and <code>Acquisition_group</code> for the replicate groups you want to score. <a href="prepare-inputs.html#samples">See a guide to the three columns.</a></p>
+          <figure class="tutorial-figure">
+            <a class="capture-link" href="../img/tutorials/lipidprophet-input-compute-hires.png" aria-label="Open full-resolution screenshot: LDA liver workspace with one RDB file for each polarity"><img src="../img/tutorials/lipidprophet-input-compute-hires.png" width="4480" height="2896" alt="LDA liver workspace with one RDB file for each polarity" loading="lazy" decoding="async"></a>
+            <figcaption>In the LC-MS liver (LDA) example, each RDB table contains measurements from a single ion polarity. <a href="../img/tutorials/lipidprophet-input-compute-hires.png">Full-resolution PNG</a></figcaption>
+          </figure>
+        </section>
+        <section id="settings">
+          <h2 id="targets">3. Choose the LC–MS settings</h2>
+          <p>Select <strong>LC-MS</strong> as the TargetDB profile. Match the negative-mode adduct chemistry, precursor and fragment mass windows, and retention-time tolerance to the acquisition and upstream search.</p>
+        </section>
+        <section id="process">
+          <h2>4. Run and review</h2>
+          <p>Choose a workspace and a <code>.tab</code> output path, then click <strong>Compute</strong>. Compare the retained count across cutoffs in the QC tab and <a href="results.html#open">filter the exported LP scores</a>.</p>
+          <div class="callout callout-tip"><strong>Try it with study data.</strong><p>The in-app catalog includes <strong>LC-MS brain (LDA)</strong>, <strong>LC-MS liver (LDA)</strong>, and <strong>LC-MS liver Q-TOF (LDA)</strong>, each with a reference table. <a href="../downloads.html#studies">See the study packages.</a></p></div>
+          <p>For help with LDA exports or LC–MS workflows, <a href="../contact.html#jurgen">contact Jürgen Hartler</a>.</p>
+        </section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="prepare-inputs.html"><small>Previous</small>Prepare your inputs</a><a href="msdial-workflow.html"><small>Next</small>MS-DIAL workflow →</a></nav>
       </article>
-      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#export">Export from LDA2</a></li><li><a href="#map">Map files</a></li><li><a href="#targets">Target database</a></li><li><a href="#settings">Settings</a></li><li><a href="#process">Process &amp; validate</a></li></ol></aside>
-    </div></section>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#export">Export from LDA</a></li><li><a href="#map">Map the measurements</a></li><li><a href="#settings">Match the LC method</a></li><li><a href="#process">Score the results</a></li></ol></aside>
+    </div></div>
   </main>
   <site-footer root=".."></site-footer>
 </body>

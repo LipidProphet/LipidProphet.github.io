@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Download LipidProphet for Windows, macOS, or Linux, and get the user manual and system requirements.">
+  <meta name="description" content="Download LipidProphet for Windows, macOS, or Linux and choose a study package to try.">
   <meta name="theme-color" content="#071827">
   <meta property="og:title" content="Downloads | LipidProphet">
-  <meta property="og:description" content="Installers, archives, system requirements, and the LipidProphet user manual.">
+  <meta property="og:description" content="LipidProphet installers, system requirements, and seven ready-to-run study packages.">
   <meta property="og:image" content="https://lipidprophet.github.io/img/LP_logo_256.png">
   <link rel="canonical" href="https://lipidprophet.github.io/downloads.html">
   <link rel="icon" href="img/LP_logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
-  <script src="js/site.js" defer></script>
+  <script src="js/site.js?v=71fd16e3ab50" defer></script>
   <title>Downloads | LipidProphet</title>
 </head>
 <body>
   <site-header active="downloads" root="."></site-header>
   <main id="main-content">
-    <header class="page-hero"><div class="container"><span class="eyebrow">Version 1.0</span><h1>Choose your LipidProphet download.</h1><p class="lead">Installers and portable packages are available for 64-bit Windows, macOS, and Linux. LipidProphet bundles the required runtime in the platform installers.</p></div></header>
+    <header class="page-hero"><div class="container"><span class="eyebrow">Version 1.0</span><h1>Choose your LipidProphet download.</h1><p class="lead">Get the desktop application for your operating system, then try a study with its inputs and reference results already prepared.</p></div></header>
     <section class="section"><div class="container">
       <div class="download-grid">
         <article class="download-card"><span class="platform">Windows</span><h2>Windows 64-bit</h2><p>Guided installer for current 64-bit Windows systems.</p><a class="button" href="https://cloud.uni-graz.at/s/Hof5YCbNNRoSRXp" target="_blank" rel="noopener noreferrer">Download for Windows ↗</a></article>
@@ -25,13 +25,33 @@
         <article class="download-card"><span class="platform">macOS</span><h2>Mac: Apple silicon</h2><p>Native ARM build for M-series Apple silicon.</p><a class="button" href="https://cloud.uni-graz.at/s/WYYWHtGD3dF5qiX" target="_blank" rel="noopener noreferrer">Download ARM build ↗</a></article>
         <article class="download-card"><span class="platform">Linux</span><h2>Unix installer</h2><p>Shell-based 64-bit installer for common Linux distributions.</p><a class="button" href="https://cloud.uni-graz.at/s/KMQQJkPJybj6SkD" target="_blank" rel="noopener noreferrer">Download .sh ↗</a></article>
         <article class="download-card"><span class="platform">Linux</span><h2>RPM package</h2><p>64-bit package for RPM-based distributions.</p><a class="button" href="https://cloud.uni-graz.at/s/2ipfwGJeJCLLa34" target="_blank" rel="noopener noreferrer">Download .rpm ↗</a></article>
-        <article class="download-card"><span class="platform">Linux</span><h2>Portable archive</h2><p>64-bit tar.gz archive for manual installation.</p><a class="button" href="https://cloud.uni-graz.at/s/aGBq7HFo8PYXrDK" target="_blank" rel="noopener noreferrer">Download tar.gz ↗</a></article>
+        <article class="download-card"><span class="platform">Linux</span><h2>Portable archive</h2><p>A compressed application archive for 64-bit Linux.</p><a class="button" href="https://cloud.uni-graz.at/s/aGBq7HFo8PYXrDK" target="_blank" rel="noopener noreferrer">Download tar.gz ↗</a></article>
       </div>
-      <p class="small muted" style="margin-top:1rem">Installers are created with install4j. Download links open the University of Graz cloud service.</p>
+      <p class="small muted" style="margin-top:1rem">Installer links open University of Graz uniCLOUD. For download or installation help, <a href="contact.html#jurgen">contact Jürgen Hartler</a>.</p>
     </div></section>
     <section class="section section-tint"><div class="container split">
-      <div><span class="eyebrow">Before you install</span><h2>System requirements</h2><ul class="requirements"><li><strong>Operating system</strong>64-bit Windows, Linux, or macOS</li><li><strong>Memory</strong>1 GB minimum; 16 GB recommended for large studies</li><li><strong>Java</strong>Java 21-compatible runtime; bundled by standard installers</li><li><strong>Graphics</strong>No dedicated GPU required</li></ul></div>
-      <aside class="card"><span class="card-icon" aria-hidden="true">PDF</span><h2>User manual</h2><p>The version 1.0 manual covers installation, the graphical workflow, inputs, settings, result tables, and a demo.</p><a class="button button-secondary" href="https://cloud.uni-graz.at/s/tdtW2HXSEmsw9tA" target="_blank" rel="noopener noreferrer">Download the manual ↗</a></aside>
+      <div><span class="eyebrow">Before you install</span><h2>System requirements</h2><ul class="requirements"><li><strong>Operating system</strong>64-bit Windows, Linux, or macOS</li><li><strong>Memory</strong>1 GB minimum, 16 GB recommended for large studies</li><li><strong>Java</strong>Java 21. Install a compatible runtime if the package you choose omits it.</li><li><strong>Graphics</strong>No dedicated GPU required</li></ul></div>
+      <aside class="card"><h2>Run the liver example</h2><p>Open the LC–MS liver study in LipidProphet, compute the scores, and compare your table with the packaged reference.</p><a class="button button-secondary" href="tutorials/quick-start.html">Follow the illustrated quick start</a></aside>
+    </div></section>
+    <section class="section" id="studies"><div class="container">
+      <div class="section-header"><div><h2>Try a study from the paper.</h2>
+        <p class="lead">Choose <strong>Download study dataset…</strong> inside LipidProphet to open a study with its settings already loaded. The same seven processed-data packages are available here as ZIP downloads.</p></div></div>
+      <div class="card-grid study-grid">
+        <article class="card"><h3>LC–MS² with LDA</h3><ul class="resource-list">
+          <li><a href="https://cloud.uni-graz.at/s/GrRFmnRDTiAxaLB/download">Mouse brain · ZIP</a></li>
+          <li><a href="https://cloud.uni-graz.at/s/iPQrta8xMbJmAbB/download">Mouse liver · ZIP</a></li>
+          <li><a href="https://cloud.uni-graz.at/s/aqXZWapQPN58RGW/download">Mouse liver, Q-TOF · ZIP</a></li>
+        </ul></article>
+        <article class="card"><h3>Shotgun MS<sup>ALL</sup> with ALEX<sup>123</sup></h3><ul class="resource-list">
+          <li><a href="https://cloud.uni-graz.at/s/z8xkH3kCxnbNFqc/download">Mouse brain · ZIP</a></li>
+          <li><a href="https://cloud.uni-graz.at/s/CnmS8TQeXPngQWj/download">Mouse liver · ZIP</a></li>
+        </ul></article>
+        <article class="card"><h3>LC–MS² with MS-DIAL</h3><ul class="resource-list">
+          <li><a href="https://cloud.uni-graz.at/s/D2DX5CQfJY8XjSz/download">Mouse brain · ZIP</a></li>
+          <li><a href="https://cloud.uni-graz.at/s/9HJTcz5yqr85xqj/download">Mouse liver · ZIP</a></li>
+        </ul></article>
+      </div>
+      <p>Each package contains the search results, sample list, workspace, and reference output. For the underlying experiments, see the <a href="publications.html#study">MassIVE records</a>.</p>
     </div></section>
     <section class="section-compact"><div class="container cta-panel"><div><h2>Installed successfully?</h2><p>Continue with a ten-minute guided run, or learn exactly which files LipidProphet needs.</p></div><div class="button-row"><a class="button button-primary" href="tutorials/quick-start.html">Quick start</a><a class="button button-ghost" href="tutorials/prepare-inputs.html">Prepare inputs</a></div></div></section>
   </main>

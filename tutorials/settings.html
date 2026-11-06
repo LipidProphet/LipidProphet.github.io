@@ -4,24 +4,45 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Understand the standard LipidProphet TargetDB profile, mass tolerances, MS1 requirement, and result-combination settings.">
   <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/settings.html">
-  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js?v=71fd16e3ab50" defer></script>
   <title>Choose settings | LipidProphet tutorial</title>
 </head>
 <body>
   <site-header active="tutorials" root=".."></site-header>
   <main id="main-content">
-    <header class="page-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Settings</span></div><span class="eyebrow">Tutorial 06</span><h1>Choose settings that match the experiment.</h1><p class="lead">Understand the TargetDB profile, matching tolerances, MS1 requirement, and result-combination controls.</p><ul class="meta-list"><li>Intermediate</li><li>About 15 minutes</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul></div></header>
-    <section class="section"><div class="container tutorial-layout">
+    <header class="page-hero"><div class="container">
+      <div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Matching settings</span></div>
+      <h1>Choose settings that match your experiment.</h1><p class="lead">Start with the acquisition method and the tolerances from your search engine. A downloaded study fills these in for its own measurements.</p>
+      <ul class="meta-list"><li>Intermediate</li><li>LipidProphet 1.0</li></ul>
+    </div></header>
+    <div class="section"><div class="container tutorial-layout">
       <article class="tutorial-content">
-        <section id="principle"><h2>Start from the validated method</h2><p>LipidProphet settings should represent the acquisition and upstream analysis. The website cannot prescribe universal numeric tolerances because suitable values depend on instrument resolution, calibration, fragmentation, and search-engine processing.</p><div class="callout callout-warning"><strong>Record, do not guess</strong><p>If a tolerance or grouping choice is unknown, recover it from the method and search-engine project before processing.</p></div></section>
-        <section id="mass"><h2>Mass and time matching</h2><dl class="definition-list"><dt>Precursor ion m/z tolerance</dt><dd>Allowed negative/positive deviation for precursor matching, with the selected unit.</dd><dt>Fragment ion m/z tolerance</dt><dd>Allowed deviation for MS² fragment matching, also with an explicit unit.</dd><dt>Retention-time tolerance</dt><dd>Allowed retention-time window in minutes for LC workflows.</dd><dt>MS1 precursor obligatory</dt><dd>Requires corresponding MS1 precursor evidence when enabled.</dd></dl></section>
-        <section id="combine"><h2>Output combination</h2><dl class="definition-list"><dt>Combine matching IDs</dt><dd>Groups compatible identifications in the result output.</dd><dt>Across adducts</dt><dd>Allows compatible IDs to be combined across adduct forms; available when matching-ID combination is enabled.</dd><dt>RT combination</dt><dd>Controls retention-time grouping behavior for combined output.</dd></dl><p>Combination improves summary readability but changes how result rows represent underlying annotations. Preserve an unambiguous workspace with the final choice.</p></section>
-        <section id="targetdb"><h2>TargetDB profile</h2><dl class="definition-list"><dt>LC-MS</dt><dd>Use for workflows with chromatographic separation.</dd><dt>Direct-infusion MS</dt><dd>Use for shotgun MS<sup>ALL</sup> workflows without chromatographic separation.</dd><dt>MS imaging</dt><dd>Use for imaging mass-spectrometry workflows.</dd><dt>Acetate ions present</dt><dd>Select only when acetate was present; LipidProphet otherwise uses formate for the affected negative-mode targets.</dd></dl></section>
-        <section id="save"><h2>Save a reproducible configuration</h2><ol class="step-list"><li><h3>Review inputs and settings together</h3><p>A correct tolerance cannot rescue mismatched input nomenclature or a wrong TargetDB profile.</p></li><li><h3>Save to a new workspace</h3><p>Write an <code>input_values.txt</code> file rather than overwriting the source configuration.</p></li><li><h3>Record a human-readable note</h3><p>Store the acquisition/search-engine versions and rationale for non-default options alongside the workspace.</p></li></ol><div class="callout"><strong>Expected result</strong><p>A validated workspace whose settings can be reviewed, rerun in the GUI, or passed to the command-line interface.</p></div></section>
-        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="shotgun-msall.html"><small>Previous tutorial</small>← ALEX<sup>123</sup> / Shotgun MS<sup>ALL</sup></a><a href="results.html"><small>Next tutorial</small>Read the results →</a></nav>
+        <section id="targetdb">
+          <h2 id="principle">Select an acquisition profile</h2>
+          <dl class="definition-list"><dt>LC-MS</dt><dd>Use for measurements separated by liquid chromatography.</dd><dt>Direct-infusion MS</dt><dd>Use for shotgun acquisitions, including MS<sup>ALL</sup>.</dd><dt>MS imaging</dt><dd>Use with suitable MS1 and MS² evidence. <a href="prepare-inputs.html#imaging">Check the imaging input requirements.</a></dd></dl>
+          <p><strong>Acetate ions present</strong> selects acetate for the affected negative-mode adducts. Leave the box clear when your method used formate.</p>
+        </section>
+        <section id="mass">
+          <h2>Match the precursor and fragment evidence</h2>
+          <figure class="tutorial-figure">
+            <a class="capture-link" href="../img/tutorials/lipidprophet-settings.png" aria-label="Open full-resolution screenshot: LC–MS liver settings showing the precursor, fragment, and retention-time tolerances"><img src="../img/tutorials/lipidprophet-settings.png" width="3800" height="1008" alt="LC–MS liver settings showing the precursor, fragment, and retention-time tolerances" loading="lazy" decoding="async"></a>
+            <figcaption>The LC–MS liver study uses 0.01 Da for precursors, 0.2 Da for fragments, and a 0.15-minute retention-time window. <a href="../img/tutorials/lipidprophet-settings.png">Full-resolution PNG</a></figcaption>
+          </figure>
+          <dl class="definition-list"><dt>Precursor and fragment <em>m/z</em> tolerances</dt><dd>Set each mass window and its unit, ppm or Da. Low-resolution MS² fragments can require a different window from a high-resolution precursor.</dd><dt>Retention time tolerance</dt><dd>For LC–MS², enter the window in minutes used to associate evidence at similar retention times. Direct infusion has no chromatographic retention time.</dd><dt>MS1 precursor obligatory</dt><dd>Select this when an identification must have corresponding MS1 precursor evidence in the search results.</dd></dl>
+        </section>
+        <section id="combine">
+          <h2>Choose what one output row represents</h2>
+          <p>For individual precursor entries, leave <strong>Combine matching IDs</strong> clear. If you enable it, <strong>Across adducts</strong> can combine matching forms, and the <strong>RT</strong> menu lets you keep retention times separate, combine within the tolerance, or combine across all retention times. A combined row keeps the highest LP score in the group.</p>
+          <p>Record this choice when reporting counts or FDR. Several precursor annotations can describe the same molecular species, so grouping changes the denominator.</p>
+        </section>
+        <section id="save">
+          <h2>Keep a reproducible record</h2>
+          <p>Choose the workspace and output paths before selecting <strong>Compute</strong>. LipidProphet saves a workspace with the effective settings, including a copy in the results directory. For a second analysis, give the output a new filename so the two results are easy to compare.</p>
+        </section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="shotgun-msall.html"><small>Previous</small>Shotgun MSALL workflow</a><a href="results.html"><small>Next</small>Read the results →</a></nav>
       </article>
-      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#principle">Starting principle</a></li><li><a href="#mass">Mass &amp; time</a></li><li><a href="#combine">Combination</a></li><li><a href="#targetdb">Generated TargetDB</a></li><li><a href="#save">Save configuration</a></li></ol></aside>
-    </div></section>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#targetdb">TargetDB profile</a></li><li><a href="#mass">Mass and time tolerances</a></li><li><a href="#combine">Combine matching IDs</a></li><li><a href="#save">Save the workspace</a></li></ol></aside>
+    </div></div>
   </main>
   <site-footer root=".."></site-footer>
 </body>

@@ -4,25 +4,51 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Resolve common LipidProphet installation, input, parser, TargetDB, memory, and output errors.">
   <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/troubleshooting.html">
-  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js?v=71fd16e3ab50" defer></script>
   <title>Troubleshooting | LipidProphet</title>
 </head>
 <body>
   <site-header active="tutorials" root=".."></site-header>
   <main id="main-content">
-    <header class="page-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Troubleshooting</span></div><span class="eyebrow">Tutorial 09 · Reference</span><h1>Diagnose a LipidProphet problem.</h1><p class="lead">Start with the error category, check the smallest likely cause, and preserve enough detail to reproduce unresolved issues.</p><ul class="meta-list"><li>All levels</li><li>Reference</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul></div></header>
-    <section class="section"><div class="container tutorial-layout">
+    <header class="page-hero"><div class="container">
+      <div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Troubleshooting</span></div>
+      <h1>Troubleshoot a LipidProphet run.</h1><p class="lead">Find the step where the run stopped. The Console tab and the file named in an error message usually point to the next check.</p>
+      <ul class="meta-list"><li>Reference</li><li>LipidProphet 1.0</li></ul>
+    </div></header>
+    <div class="section"><div class="container tutorial-layout">
       <article class="tutorial-content">
-        <section id="install"><h2>Installation or launch</h2><dl class="definition-list"><dt>Application does not start</dt><dd>Confirm that the build matches the OS and architecture. On macOS, distinguish Intel from Apple silicon.</dd><dt>Windows installer stops</dt><dd>Rerun the installer with administrator privileges when requested.</dd><dt>JAR reports Java error</dt><dd>Use a Java 21-compatible runtime and keep dependency JARs beside the built application as packaged.</dd><dt>Large run freezes or exits</dt><dd>Close competing applications, confirm free memory, and use the installer VM options if more heap must be allocated. About 16 GB system memory is recommended for large studies.</dd></dl></section>
-        <section id="files"><h2>Missing or rejected files</h2><dl class="definition-list"><dt>Workspace does not exist</dt><dd>The saved path is stale or mistyped. Select the actual readable <code>input_values.txt</code>.</dd><dt>Unsupported result extension</dt><dd>Use <code>.tab</code> or <code>.txt</code>. All search-result files in a run must share one extension.</dd><dt>Sample list rejected</dt><dd>Confirm it is a readable <code>.xlsx</code> file and maps every selected result file.</dd><dt>Output path rejected</dt><dd>Choose a writable destination whose filename ends in <code>.tab</code>.</dd></dl></section>
-        <section id="parse"><h2>Parser and nomenclature errors</h2><ol class="step-list"><li><h3>Identify the source format</h3><p>Do not mix LDA/ALEX-style tables with MS-DIAL text exports.</p></li><li><h3>Restore original headers</h3><p>Re-export from the search engine rather than repairing columns by hand.</p></li><li><h3>Check class and adduct spelling</h3><p>Compare the result terminology with the supported nomenclature and selected TargetDB profile.</p></li><li><h3>Reduce to one sample</h3><p>Create a redacted minimal case that still triggers the parser error.</p></li></ol><div class="callout callout-tip"><strong>Minimal cases are faster to fix</strong><p>Keep the header and a few representative rows, but remove confidential sample identifiers before sharing.</p></div></section>
-        <section id="targets"><h2>TargetDB profile mismatch</h2><dl class="definition-list"><dt>Expected targets are absent</dt><dd>Confirm the LC-MS, Direct-infusion MS, or MS-imaging profile and the acetate/formate choice.</dd><dt>Target setup fails</dt><dd>Copy the first TargetDB-related console error and confirm that the search-result nomenclature matches the selected profile.</dd><dt>Unexpected ambiguity</dt><dd>Review isomeric/isobaric partners and the built-in deterministic false-positive-control result before changing the method.</dd></dl></section>
-        <section id="output"><h2>Output errors</h2><dl class="definition-list"><dt>Output directory not writable</dt><dd>Create/select a writable folder before running.</dd><dt>Output must end in .tab</dt><dd>Use the required extension for the main result.</dd><dt>File already exists</dt><dd>Choose a new name. CLI users can add <code>--overwrite</code>, but unique outputs are safer.</dd><dt>Saved workspace conflicts</dt><dd>Use a distinct <code>.txt</code> path; it cannot replace the source workspace or main output.</dd></dl></section>
-        <section id="report"><h2>Still unresolved?</h2><p>Open a <a href="https://github.com/HartlerLab/LipidProphet/issues" target="_blank" rel="noopener noreferrer">GitHub issue</a> with:</p><ul class="checklist"><li>OS, architecture, and LipidProphet version</li><li>Search-engine name and version</li><li>Exact steps and error text</li><li>Generated TargetDB profile, acetate/formate choice, and key settings</li><li>Relevant console and log excerpt</li><li>Small redacted files that reproduce the issue</li></ul><div class="callout callout-warning"><strong>Do not post confidential study data</strong><p>Remove participant identifiers and unrelated rows, and obtain permission before sharing unpublished inputs publicly.</p></div></section>
-        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="cli.html"><small>Previous tutorial</small>← CLI &amp; automation</a><a href="../contact.html"><small>Need more help?</small>Contact &amp; issue reporting →</a></nav>
+        <section id="install">
+          <h2>The application does not start</h2>
+          <p>Check the operating system and architecture of the <a href="../downloads.html">download</a>. If your package requires a separate Java installation, use Java 21. For larger studies, 16 GB of memory is recommended.</p>
+        </section>
+        <section id="studies">
+          <h2>A study will not open</h2>
+          <p>Choose a writable folder under <strong>Save studies in</strong>. The first download needs an internet connection. A complete study can reopen from the same folder offline. To get a fresh copy, choose a different destination and keep the old study for comparison.</p>
+        </section>
+        <section id="files">
+          <h2>A file or sample is missing</h2>
+          <p>Check the <code>SampleList</code> sheet and its exact headers: <code>RAW_ID</code>, <code>Acquisition_group</code>, and <code>Sample_type</code>. Match IDs to the raw measurements in LDA or ALEX<sup>123</sup> tables, or to the filenames of individual MS-DIAL peak lists. <a href="prepare-inputs.html#samples">Review the input requirements.</a></p>
+        </section>
+        <section id="parser">
+          <h2 id="parse">The search result export is rejected</h2>
+          <p>Use one supported export format per run. For MS-DIAL, choose <strong>Peak list → Text</strong> separately for each analysis. Re-export a file with its original headers if a required column is missing. The <a href="../downloads.html#studies">study packages</a> contain working examples from each search engine.</p>
+        </section>
+        <section id="targets">
+          <h2>Fewer candidates are retained than expected</h2>
+          <p>Check the acquisition profile, adduct chemistry, and mass tolerances against the upstream method. Check that each scoring group contains at least three replicate measurements and that biological groups have distinct sample-type labels. <a href="settings.html">Review matching settings.</a></p>
+        </section>
+        <section id="output">
+          <h2>Find the results of a completed run</h2>
+          <p>For a downloaded study, look in its <code>results</code> folder. The supplied comparison table is in <code>reference</code>. If the GUI asks to replace a file, choose a different output path to keep both runs. Apply your final cutoff to the <strong>LipidProphet score</strong> column of the exported table.</p>
+        </section>
+        <section id="report">
+          <h2>Ask about an unresolved issue</h2>
+          <p>For a software issue, <a href="../contact.html#jurgen">contact Jürgen Hartler</a>. Include your software version, operating system, search engine, the step you were trying, and the exact console error. For questions about interpreting the score, <a href="../contact.html#christer">contact Christer S. Ejsing</a>.</p>
+        </section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="cli.html"><small>Previous</small>Command line</a><a href="../contact.html"><small>Next</small>Contact the project team →</a></nav>
       </article>
-      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#install">Installation</a></li><li><a href="#files">Files</a></li><li><a href="#parse">Parser errors</a></li><li><a href="#targets">TargetDB</a></li><li><a href="#output">Output errors</a></li><li><a href="#report">Report an issue</a></li></ol></aside>
-    </div></section>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#install">Installation</a></li><li><a href="#studies">Study downloads</a></li><li><a href="#files">Inputs and sample names</a></li><li><a href="#parser">Search results</a></li><li><a href="#targets">Matching settings</a></li><li><a href="#output">Result files</a></li><li><a href="#report">Get support</a></li></ol></aside>
+    </div></div>
   </main>
   <site-footer root=".."></site-footer>
 </body>

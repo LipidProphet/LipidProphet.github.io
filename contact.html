@@ -10,26 +10,39 @@
   <meta property="og:image" content="https://lipidprophet.github.io/img/LP_logo_256.png">
   <link rel="canonical" href="https://lipidprophet.github.io/contact.html">
   <link rel="icon" href="img/LP_logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/site.css">
-  <script src="js/site.js" defer></script>
+  <link rel="stylesheet" href="css/site.css?v=3f6e5375ecd2">
+  <script src="js/site.js?v=71fd16e3ab50" defer></script>
   <title>Support | LipidProphet</title>
 </head>
 <body>
   <site-header active="support" root="."></site-header>
   <main id="main-content">
-    <header class="page-hero"><div class="container"><span class="eyebrow">Support</span><h1>Get unstuck; make the next run reproducible.</h1><p class="lead">Start with the troubleshooting guide. If the issue remains, send the smallest set of details needed to reproduce it.</p></div></header>
-    <section class="section"><div class="container"><div class="support-grid">
-      <article class="support-card"><span class="card-icon" aria-hidden="true">?</span><h2>Troubleshoot a run</h2><p>Check file types, input mappings, the selected TargetDB profile, memory, and common parser errors.</p><a class="button" href="tutorials/troubleshooting.html">Open troubleshooting</a></article>
-      <article class="support-card"><span class="card-icon" aria-hidden="true">GH</span><h2>Report a software issue</h2><p>Include your OS, LipidProphet version, steps to reproduce, the exact error, and a redacted minimal input if possible.</p><a class="button" href="https://github.com/HartlerLab/LipidProphet/issues" target="_blank" rel="noopener noreferrer">Open GitHub issues ↗</a></article>
-      <article class="support-card"><span class="card-icon" aria-hidden="true">@</span><h2>Scientific questions</h2><p>Contact Christer S. Ejsing for questions about the scientific application and validation context.</p><a class="button button-secondary" href="mailto:cse@bmb.sdu.dk">cse@bmb.sdu.dk</a></article>
-      <article class="support-card"><span class="card-icon" aria-hidden="true">@</span><h2>Software questions</h2><p>Contact Jürgen Hartler for questions about installation, inputs, processing, and integration.</p><a class="button button-secondary" href="mailto:juergen.hartler@uni-graz.at">juergen.hartler@uni-graz.at</a></article>
-    </div></div></section>
-    <section class="section section-tint"><div class="container split"><div><span class="eyebrow">A useful report</span><h2>Include these details</h2><ul class="checklist"><li>LipidProphet version and installer type</li><li>Operating system and available memory</li><li>Search-engine export type and version</li><li>TargetDB workflow profile and acetate/formate choice</li><li>Exact error text and the relevant console or log excerpt</li><li>Minimal, redacted files that reproduce the problem</li></ul></div><aside class="callout callout-warning"><strong>Protect unpublished data</strong><p>Remove participant identifiers, confidential sample names, and unrelated study data before attaching files to a public GitHub issue.</p></aside></div></section>
-    <section class="section"><div class="container reading-width faq"><span class="eyebrow">Frequently asked questions</span><h2>Quick answers</h2>
-      <details><summary>Does LipidProphet replace my search engine?</summary><p>No. It consumes search-engine results and adds dataset-level confidence scoring. Supported workflows include LDA, ALEX<sup>123</sup>, and MS-DIAL formats.</p></details>
-      <details><summary>Can I use LipidProphet without chromatography?</summary><p>Yes. The application includes target-database workflows for LC-MS, shotgun MS<sup>ALL</sup>, and MS imaging.</p></details>
-      <details><summary>Do I need a dedicated GPU?</summary><p>No. Memory is the more important resource for large datasets; 16 GB is recommended.</p></details>
-      <details><summary>Where are my settings saved?</summary><p>The GUI can save the run configuration as an <code>input_values.txt</code> workspace. Command-line runs require a distinct path for the exact workspace used.</p></details>
+    <header class="page-hero"><div class="container"><span class="eyebrow">Support</span><h1>Get help with LipidProphet.</h1></div></header>
+    <section class="section"><div class="container support-grid">
+      <article class="support-card"><h2>Troubleshoot a run</h2>
+        <p>Check file formats, sample IDs, acquisition settings, and memory requirements when a study won’t open, an export is rejected, or a run returns fewer lipids than expected.</p>
+        <a class="button button-secondary" href="tutorials/troubleshooting.html">Open troubleshooting</a>
+      </article>
+      <article class="support-card"><h2>Report a software issue</h2>
+        <p>Include your LipidProphet version, operating system, the steps that triggered the problem, and the exact error message. A small example file with sensitive details removed can help. <a href="mailto:juergen.hartler@uni-graz.at?subject=LipidProphet%20software%20issue">Email Jürgen Hartler</a> or use GitHub if you have repository access.</p>
+        <a class="button button-secondary" href="https://github.com/HartlerLab/LipidProphet/issues" target="_blank" rel="noopener noreferrer">Open GitHub issues ↗</a>
+      </article>
+      <article class="support-card" id="jurgen"><h2>Jürgen Hartler</h2>
+        <p><strong>LipidProphet software, LC–MS workflows, and LDA</strong></p>
+        <p>Contact Jürgen for help installing or running LipidProphet, setting up an LC–MS analysis, or preparing exports from Lipid Data Analyzer (LDA). For a software issue, include your operating system, the LipidProphet version, and the exact error message.</p>
+        <a class="button button-secondary" href="mailto:juergen.hartler@uni-graz.at">juergen.hartler@uni-graz.at</a>
+      </article>
+      <article class="support-card" id="christer"><h2>Christer S. Ejsing</h2>
+        <p><strong>LipidProphet scores, shotgun lipidomics, and ALEX<sup>123</sup></strong></p>
+        <p>Contact Christer about the evidence behind a LipidProphet score, choosing a cutoff for your study, planning a shotgun MS<sup>ALL</sup> analysis, or working with ALEX<sup>123</sup> results.</p>
+        <a class="button button-secondary" href="mailto:cse@bmb.sdu.dk">cse@bmb.sdu.dk</a>
+      </article>
+    </div></section>
+    <section class="section section-tint"><div class="container reading-width faq"><h2>Quick answers</h2>
+      <details><summary>Can I use my existing search results?</summary><p>LipidProphet accepts LDA and ALEX<sup>123</sup> RDB tables and individual MS-DIAL peak-list text exports. If you use another engine, <a href="tutorials/prepare-inputs.html#other-search-engines">see how to prepare a compatible export</a>.</p></details>
+      <details><summary>How many replicate measurements do I need?</summary><p>Use at least three analyses per scoring group. Groups are defined by sample type, acquisition group, and polarity. <a href="tutorials/prepare-inputs.html#samples">See how to set up the sample list.</a></p></details>
+      <details><summary>What do I need for MS imaging?</summary><p>Provide MS1 precursor and MS² fragment evidence, a supported search export, a matching spectral database, a sample list, and at least three analyses per scoring group. <a href="tutorials/prepare-inputs.html#imaging">See the imaging requirements.</a></p></details>
+      <details><summary>Where can I find a working example?</summary><p>Select <strong>Download study dataset…</strong> in the desktop app. The <a href="tutorials/quick-start.html">quick start</a> takes you from the study chooser to the scored output.</p></details>
     </div></section>
   </main>
   <site-footer root="."></site-footer>

@@ -337,12 +337,6 @@ pre code {
   color: var(--ink-950);
 }
 
-.site-nav .nav-github {
-  margin-left: .45rem;
-  border: 1px solid var(--ink-200);
-  color: var(--ink-900);
-}
-
 .site-search {
   position: relative;
   width: clamp(10.5rem, 15vw, 13.5rem);
@@ -692,7 +686,7 @@ pre code {
 
 .trust-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr minmax(max-content, 1fr) 1fr;
   margin: 0;
   padding: 1.15rem 0;
   list-style: none;
@@ -722,10 +716,25 @@ pre code {
   font-size: 1rem;
 }
 
-.card-grid {
+.card-grid,
+.score-features {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
+}
+
+.engine-options {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.engine-options .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.engine-options .card-link {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 .card {
@@ -774,11 +783,15 @@ pre code {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   counter-reset: workflow;
 }
 
 .workflow-step {
   position: relative;
+  margin: 0;
   border-top: .28rem solid var(--brand);
   border-radius: var(--radius-sm);
   padding: 1.35rem;
@@ -813,23 +826,8 @@ pre code {
   gap: clamp(2rem, 7vw, 6rem);
 }
 
-.fact-panel {
-  border: 1px solid #cbdaf0;
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 4vw, 2.3rem);
-  background: linear-gradient(145deg, var(--blue-soft), #f8fbff);
-}
-
-.fact-panel blockquote {
-  margin: 0 0 1.25rem;
-  color: var(--ink-900);
-  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-  font-weight: 650;
-  line-height: 1.5;
-}
-
-.fact-panel p:last-child {
-  margin-bottom: 0;
+.research-page .split {
+  align-items: start;
 }
 
 .page-hero {
@@ -845,6 +843,21 @@ pre code {
 .page-hero h1 {
   max-width: 58rem;
   font-size: clamp(2.4rem, 5vw, 4rem);
+}
+
+.research-page .page-hero h1 {
+  text-wrap: balance;
+}
+
+.research-page h1 span,
+.publication .authors span,
+.publication .contribution-note a {
+  white-space: nowrap;
+}
+
+.research-page .page-hero .lead {
+  max-width: 51rem;
+  margin-bottom: 0;
 }
 
 .breadcrumbs {
@@ -959,6 +972,10 @@ pre code {
   margin-top: 2rem;
 }
 
+.tutorial-content :not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
 .tutorial-content img {
   border: 1px solid var(--ink-200);
   border-radius: var(--radius);
@@ -981,6 +998,35 @@ pre code {
   color: var(--ink-600);
   font-size: .88rem;
   line-height: 1.55;
+}
+
+.capture-link {
+  display: block;
+  border-radius: var(--radius);
+  cursor: zoom-in;
+}
+
+.capture-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tutorial-figure figcaption a {
+  white-space: nowrap;
+}
+
+.resource-list {
+  margin: .8rem 0 1rem;
+  padding-left: 1.3rem;
+}
+
+.resource-list li + li {
+  margin-top: .4rem;
+}
+
+.study-grid {
+  margin-bottom: 1.2rem;
 }
 
 .toc {
@@ -1264,6 +1310,7 @@ pre code {
 }
 
 .publication {
+  margin-inline: auto;
   border: 1px solid var(--ink-200);
   border-radius: var(--radius-lg);
   padding: clamp(1.5rem, 4vw, 2.4rem);
@@ -1282,6 +1329,29 @@ pre code {
   font-weight: 800;
 }
 
+.publication sup {
+  top: 0;
+  font-size: .78em;
+}
+
+.publication .authors {
+  margin-bottom: .75rem;
+}
+
+.publication .contribution-note {
+  margin-bottom: 0;
+  color: var(--ink-600);
+  font-size: .95rem;
+}
+
+.research-resources {
+  margin-top: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+.research-resources h2 {
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+}
+
 .support-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1289,11 +1359,18 @@ pre code {
 }
 
 .support-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   border: 1px solid var(--ink-200);
   border-radius: var(--radius);
   padding: 1.5rem;
   background: var(--white);
   box-shadow: var(--shadow-sm);
+}
+
+.support-card > .button {
+  margin-top: auto;
 }
 
 .faq details {
@@ -1434,11 +1511,6 @@ pre code {
     padding: .82rem .9rem;
   }
 
-  .site-nav .nav-github {
-    margin: .35rem 0 0;
-    text-align: center;
-  }
-
   .site-search {
     order: -1;
     width: 100%;
@@ -1492,6 +1564,20 @@ pre code {
   .toc ol {
     columns: 2;
   }
+
+  .trust-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .trust-list li {
+    border-right: 0;
+    border-bottom: 1px solid var(--ink-100);
+    padding: .8rem;
+  }
+
+  .trust-list li:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
 }
 
 @media (max-width: 46rem) {
@@ -1524,20 +1610,6 @@ pre code {
     min-height: 15rem;
   }
 
-  .trust-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .trust-list li {
-    border-right: 0;
-    border-bottom: 1px solid var(--ink-100);
-    padding: .8rem;
-  }
-
-  .trust-list li:nth-last-child(-n + 2) {
-    border-bottom: 0;
-  }
-
   .section-header,
   .cta-panel,
   .footer-bottom {
@@ -1549,6 +1621,7 @@ pre code {
   .tutorial-grid,
   .download-grid,
   .workflow,
+  .score-features,
   .split,
   .support-grid,
   .footer-grid,
@@ -1597,11 +1670,7 @@ pre code {
   }
 }
 
-@media (max-width: 23rem) {
-  .brand-link span {
-    font-size: .95rem;
-  }
-
+@media (max-width: 34rem) {
   .trust-list {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1613,6 +1682,12 @@ pre code {
 
   .trust-list li:last-child {
     border-bottom: 0;
+  }
+}
+
+@media (max-width: 23rem) {
+  .brand-link span {
+    font-size: .95rem;
   }
 }
 

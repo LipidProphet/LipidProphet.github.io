@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="LipidProphet provides probability-based confidence scores for FDR-controlled lipid identification from LC-MS², shotgun MSᴬᴸᴸ, and imaging MS workflows.">
+  <meta name="description" content="Score lipid identifications across replicate MS² measurements. Explore a real study, see the evidence behind each score, and choose a confidence cutoff.">
   <meta name="theme-color" content="#071827">
   <meta property="og:title" content="LipidProphet | false-discovery control for lipid identification">
-  <meta property="og:description" content="A universal confidence-scoring application for FDR-controlled MS² lipid identification.">
+  <meta property="og:description" content="Score lipid identifications from LDA, ALEX123, and MS-DIAL and explore the results in a free desktop application.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lipidprophet.github.io/">
   <meta property="og:image" content="https://lipidprophet.github.io/img/LP_logo_256.png">
   <link rel="canonical" href="https://lipidprophet.github.io/">
   <link rel="icon" href="img/LP_logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
-  <script src="js/site.js" defer></script>
+  <script src="js/site.js?v=71fd16e3ab50" defer></script>
   <title>LipidProphet | false-discovery control for lipid identification</title>
 </head>
 <body>
   <site-header active="home" root="."></site-header>
-  <noscript><p class="noscript">JavaScript is used only for shared navigation and small interface enhancements. All scientific content remains readable.</p></noscript>
+  <noscript><p class="noscript">Enable JavaScript to use site search and navigation.</p></noscript>
   <main id="main-content">
     <section class="hero">
       <div class="container hero-grid">
@@ -32,76 +32,56 @@
           </div>
         </div>
         <div class="hero-visual" aria-label="LipidProphet mascot">
-          <div class="mascot-spotlight"><img src="img/LP_logo.svg" alt="Yellow LipidProphet mascot wearing a white hat"></div>
+          <div class="mascot-spotlight"><img src="img/LP_logo.svg" alt="Yellow LipidProphet mascot wearing a black hat with a white band"></div>
         </div>
       </div>
     </section>
     <div class="trust-strip" aria-label="Project highlights">
       <div class="container">
         <ul class="trust-list">
-          <li><strong>LC &amp; direct infusion</strong>Multiple acquisition workflows</li>
+          <li><strong>LC–MS² &amp; shotgun MS<sup>ALL</sup></strong>Benchmarked acquisition methods</li>
           <li><strong>Low &amp; high resolution</strong>Instrument-independent scoring</li>
-          <li><strong>LDA, ALEX<sup>123</sup> &amp; MS-DIAL</strong>Fits established pipelines</li>
-          <li><strong>Apache 2.0</strong>Free and open source</li>
+          <li><strong>Works across search engines</strong>e.g. LDA, ALEX<sup>123</sup> or MS-DIAL</li>
+          <li><strong>Free desktop software</strong>Windows, macOS, and Linux</li>
         </ul>
       </div>
     </div>
-    <section class="section">
-      <div class="container">
-        <div class="section-header"><div>
-          <span class="eyebrow">Why LipidProphet</span>
-          <h2>Move from a spectral match to a dataset-level confidence measure.</h2>
-          <p class="lead">Conventional similarity scores assess one match at a time. LipidProphet learns from the detection frequencies of precursors and fragments across the complete dataset.</p>
-        </div></div>
-        <div class="card-grid">
-          <article class="card"><span class="card-icon" aria-hidden="true">P</span><h3>Probability-based scoring</h3><p>Combine four subscores that use intrinsic MS² data features instead of relying only on fragment intensity similarity.</p></article>
-          <article class="card"><span class="card-icon" aria-hidden="true">FP</span><h3>Deterministic FP control</h3><p>Identify false annotations caused when isomeric or isobaric true positives produce identical or closely matching fragment m/z values.</p></article>
-          <article class="card"><span class="card-icon" aria-hidden="true">MS²</span><h3>Workflow-independent</h3><p>Apply the same confidence concept to LC-MS², direct-infusion shotgun MS<sup>ALL</sup>, and MS imaging data with low- or high-resolution detection.</p></article>
-        </div>
+    <section class="section-compact" id="scoring"><div class="container">
+      <div class="section-header">
+        <div><h2>From a spectral match to dataset-level confidence</h2>
+          <p class="lead">A search engine proposes a lipid identity from a spectrum. LipidProphet checks how consistently its precursor and expected fragments appear across replicate measurements.</p></div>
+        <a class="card-link" href="tutorials/results.html#scores">How the LP score works</a>
       </div>
-    </section>
-    <section class="section section-dark">
-      <div class="container">
-        <div class="section-header">
-          <div><span class="eyebrow">The workflow</span><h2>Keep your search engine. Add a confidence layer.</h2></div>
-          <a class="button button-ghost button-small" href="tutorials/prepare-inputs.html">See required inputs</a>
-        </div>
-        <div class="workflow">
-          <article class="workflow-step"><h3>Export annotations</h3><p>Begin with search results from LDA2, MS-DIAL, ALEX<sup>123</sup>, or another supported tabular workflow.</p></article>
-          <article class="workflow-step"><h3>Prepare context</h3><p>Add the sample list and search-result files, then choose the built-in TargetDB profile that matches the acquisition.</p></article>
-          <article class="workflow-step"><h3>Calculate scores</h3><p>Run LipidProphet in the graphical interface or reuse a saved workspace from the command line.</p></article>
-          <article class="workflow-step"><h3>Review &amp; export</h3><p>Inspect score distributions and export tab-delimited results for downstream analysis.</p></article>
-        </div>
+      <div class="score-features">
+        <article class="card"><h3>Probability-based scoring</h3><p>Four subscores combine precursor and fragment evidence. Even a weak, chain-specific fragment can contribute when it recurs across measurements.</p></article>
+        <article class="card"><h3>False-positive control</h3><p>LipidProphet checks for deterministic false positives when a competing lipid can explain a candidate’s fragments.</p></article>
+        <article class="card"><h3>Across acquisition methods</h3><p>Score low- or high-resolution LC–MS² and shotgun MS<sup>ALL</sup> data. For MS imaging, check the <a href="tutorials/prepare-inputs.html#imaging">input requirements</a>.</p></article>
       </div>
-    </section>
-    <section class="section section-tint">
-      <div class="container split">
-        <div>
-          <span class="eyebrow">Designed for scale</span>
-          <h2>A score built from the dataset, not just the spectrum.</h2>
-          <p class="lead">Frequently observed fragments are less likely to be random noise. LipidProphet uses that dataset-wide evidence to calculate confidence without depending on instrument-specific intensity patterns.</p>
-          <p>This supports unsupervised processing of large studies while preserving a clear, reproducible record of the input files and settings used for each run.</p>
-          <a class="card-link" href="publications.html">Read the scientific rationale</a>
-        </div>
-        <aside class="fact-panel"><blockquote>“Universal” means applicable to MS platforms that rely on MS² data; across separation techniques, sample matrices, instruments, and supported search engines.</blockquote></aside>
+    </div></section>
+    <section class="section-compact section-dark" id="workflow"><div class="container">
+      <div class="section-header">
+        <h2>Add LipidProphet to your workflow</h2>
+        <a class="button button-ghost button-small" href="tutorials/quick-start.html">Follow the quick start</a>
       </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <div><span class="eyebrow">Learn by doing</span><h2>Start with your workflow.</h2><p class="lead">Each tutorial states its inputs, estimated time, expected result, and the next useful step.</p></div>
-          <a class="button button-secondary button-small" href="tutorials/index.html">View all tutorials</a>
-        </div>
-        <div class="card-grid">
-          <article class="card"><span class="card-icon" aria-hidden="true">01</span><h3>Quick start</h3><p>Install LipidProphet, open the GUI, load a prepared workspace, and produce your first result table.</p><a class="card-link" href="tutorials/quick-start.html">Begin</a></article>
-          <article class="card"><span class="card-icon" aria-hidden="true">02</span><h3>LDA2 → LC-MS²</h3><p>Map the LDA2 result files and sample list, then select the built-in LC-MS profile.</p><a class="card-link" href="tutorials/lda2-workflow.html">Open workflow</a></article>
-          <article class="card"><span class="card-icon" aria-hidden="true">03</span><h3>MS-DIAL → LC-MS²</h3><p>Prepare compatible MS-DIAL exports and check naming, adduct, and file consistency before scoring.</p><a class="card-link" href="tutorials/msdial-workflow.html">Open workflow</a></article>
-        </div>
+      <ol class="workflow">
+        <li class="workflow-step"><h3>Export annotations</h3><p>Export candidate lipids with their precursor and fragment evidence.</p></li>
+        <li class="workflow-step"><h3>Group replicates</h3><p>Match measurement IDs to their groups in the sample list.</p></li>
+        <li class="workflow-step"><h3>Calculate scores</h3><p>Select the acquisition profile and click <strong>Compute</strong>.</p></li>
+        <li class="workflow-step"><h3>Review results</h3><p>Explore the QC plot, then filter the exported table by LP score.</p></li>
+      </ol>
+    </div></section>
+    <section class="section-compact section-tint"><div class="container">
+      <div class="section-header"><h2>Choose your search engine</h2></div>
+      <div class="card-grid engine-options">
+        <article class="card"><h3>Lipid Data Analyzer</h3><p>Export an RDB summary with the raw measurement IDs used in your sample list.</p><a class="card-link" href="tutorials/lda2-workflow.html">Score LDA results</a></article>
+        <article class="card"><h3>ALEX<sup>123</sup></h3><p>Use the precursor and fragment tables from a shotgun MS<sup>ALL</sup> analysis.</p><a class="card-link" href="tutorials/shotgun-msall.html">Score shotgun results</a></article>
+        <article class="card"><h3>MS-DIAL</h3><p>Export a text peak list for each measurement.</p><a class="card-link" href="tutorials/msdial-workflow.html">Score MS-DIAL results</a></article>
+        <article class="card"><h3>Other search engines</h3><p>Use a compatible RDB layout and ALEX<sup>123</sup> fragment names.</p><a class="card-link" href="tutorials/prepare-inputs.html#other-search-engines">See RDB requirements</a></article>
       </div>
-    </section>
+    </div></section>
     <section class="section-compact"><div class="container cta-panel">
-      <div><h2>Ready to score a dataset?</h2><p>Download the installer for your operating system, then follow the quick-start tutorial.</p></div>
-      <div class="button-row"><a class="button button-primary" href="downloads.html">Choose a download</a><a class="button button-ghost" href="contact.html">Get support</a></div>
+      <div><h2>See a complete run on your own computer.</h2><p>Download a study from inside LipidProphet, run it, and compare your table with the supplied reference.</p></div>
+      <div class="button-row"><a class="button button-primary" href="tutorials/quick-start.html">Follow the quick start</a><a class="button button-ghost" href="tutorials/prepare-inputs.html">Use your own data</a></div>
     </div></section>
   </main>
   <site-footer root="."></site-footer>

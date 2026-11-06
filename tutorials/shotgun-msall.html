@@ -4,27 +4,46 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Prepare ALEX¹²³ direct-infusion MSᴬᴸᴸ results and process them with LipidProphet.">
   <meta name="theme-color" content="#071827"><link rel="canonical" href="https://lipidprophet.github.io/tutorials/shotgun-msall.html">
-  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js" defer></script>
+  <link rel="icon" href="../img/LP_logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../css/site.css"><script src="../js/site.js?v=71fd16e3ab50" defer></script>
   <title>ALEX¹²³ direct-infusion MSᴬᴸᴸ | LipidProphet tutorial</title>
 </head>
 <body>
   <site-header active="tutorials" root=".."></site-header>
   <main id="main-content">
-    <header class="page-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>ALEX<sup>123</sup> direct infusion</span></div><span class="eyebrow">Tutorial 05</span><h1>Score ALEX<sup>123</sup> shotgun MS<sup>ALL</sup> results.</h1><p class="lead">Prepare direct-infusion results from ALEX<sup>123</sup>, select the matching LipidProphet workflow, and validate the confidence-scored output.</p><ul class="meta-list"><li>Intermediate</li><li>About 20 minutes</li><li>LipidProphet 1.0</li><li>Reviewed 30 Aug 2026</li></ul></div></header>
-    <section class="section"><div class="container tutorial-layout">
+    <header class="page-hero"><div class="container">
+      <div class="breadcrumbs"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Tutorials</a><span aria-hidden="true">/</span><span>Shotgun workflow</span></div>
+      <h1>Score shotgun MS<sup>ALL</sup> results from ALEX<sup>123</sup>.</h1><p class="lead">Follow the shotgun mouse liver study to score precursor and fragment detections across direct-infusion measurements.</p>
+      <ul class="meta-list"><li>ALEX¹²³</li><li>Direct infusion</li></ul>
+    </div></header>
+    <div class="section"><div class="container tutorial-layout">
       <article class="tutorial-content">
-        <section id="scope"><h2>When to use this workflow</h2><p>Use this tutorial for direct-infusion shotgun data processed with ALEX<sup>123</sup>, including the MS<sup>ALL</sup> validation dataset. The LipidProphet confidence model uses MS² evidence without depending on chromatographic separation.</p><div class="callout callout-tip"><strong>ALEX<sup>123</sup> is one supported search engine</strong><p>ALEX<sup>123</sup> is the search engine used for the MS<sup>ALL</sup> data described here. LipidProphet also supports compatible direct-infusion results from other search engines; the analytical workflow determines the LipidProphet settings, not the search-engine name alone.</p></div></section>
-        <section id="inputs"><h2>1. Export and prepare ALEX<sup>123</sup> results</h2><ol class="step-list"><li><h3>Complete the ALEX<sup>123</sup> analysis</h3><p>Use one consistent ALEX<sup>123</sup> method and nomenclature across every sample in the LipidProphet run.</p></li><li><h3>Export a consistent result set</h3><p>Place the compatible ALEX<sup>123</sup> search-engine result files in a dedicated folder. Keep the same file format for every selected result.</p></li><li><h3>Prepare the sample list</h3><p>Use an <code>.xlsx</code> sample list that maps every ALEX<sup>123</sup> result file to its direct-infusion sample.</p></li><li><h3>Record the ion chemistry</h3><p>Document whether acetate or formate was used for negative-mode acquisition.</p></li></ol><p>See <a href="prepare-inputs.html">Prepare required inputs</a> for file extensions and folder organization.</p></section>
-        <section id="targets"><h2>2. Select the target database profile</h2><ol class="step-list"><li><h3>Select the Direct-infusion MS profile</h3><p>Use this TargetDB profile for MS<sup>ALL</sup> data. Do not select LC-MS or MS imaging.</p></li><li><h3>Set negative adduct chemistry</h3><p>Select <strong>Acetate ions present</strong> only when acetate was used; otherwise LipidProphet uses formate for the affected ions.</p></li><li><h3>Review the profile</h3><p>Confirm the profile and acetate/formate setting before starting the run.</p></li></ol></section>
-        <section id="matching"><h2>3. Review matching behavior</h2><p>Set precursor and fragment m/z tolerances for the acquisition. Retention-time grouping is not the primary separation dimension in this workflow; keep any combination behavior aligned with the direct-infusion method and sample organization.</p><div class="callout callout-warning"><strong>Do not copy LC settings automatically</strong><p>The same instrument may require different grouping logic for LC and direct-infusion analyses.</p></div></section>
-        <section id="run"><h2>4. Save, run, and validate</h2><ol class="step-list"><li><h3>Save the workspace</h3><p>Use a name that records ALEX<sup>123</sup>, direct infusion, and the ion-chemistry choice.</p></li><li><h3>Process to a new .tab output</h3><p>Start the run and follow each processing stage in the Console tab.</p></li><li><h3>Check study coverage</h3><p>Confirm the expected ALEX<sup>123</sup> samples, lipid classes, adducts, and score fields are present.</p></li><li><h3>Review the QC plot</h3><p>Inspect the LP score curve and apply the documented false-discovery threshold consistently.</p></li></ol><div class="callout"><strong>Expected result</strong><p>A confidence-scored result table for the ALEX<sup>123</sup> shotgun MS<sup>ALL</sup> dataset and a workspace that records the completed run.</p></div></section>
-        <section id="cli"><h2>Optional: repeat from the CLI</h2><p>After the standard GUI workspace is validated, the equivalent generated-target overrides are:</p><pre data-copy><code>--target-db-source memory \
---target-db-workflow msall \
---target-db-acetate true</code></pre><p>Use <code>false</code> for formate. See <a href="cli.html">CLI &amp; automation</a> for a complete command.</p></section>
-        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="msdial-workflow.html"><small>Previous tutorial</small>← MS-DIAL → LC-MS²</a><a href="settings.html"><small>Next tutorial</small>Choose settings →</a></nav>
+        <section id="inputs">
+          <h2 id="scope">1. Bring the ALEX<sup>123</sup> tables</h2>
+          <p>Select the ALEX<sup>123</sup> RDB <code>.tab</code> files for your acquisition. In the shotgun mouse liver study, select three tables: the MS1 precursor results, the MS² fragment results, and the separate MS² table for triacylglycerols (TAGs). Match the <code>RAW_ID</code> values in the tables to the rows of your <code>SampleList</code> worksheet. <a href="prepare-inputs.html#samples">Set up the replicate groups.</a></p>
+        </section>
+        <section id="targets">
+          <h2>2. Select the acquisition profile</h2>
+          <p id="matching">Choose <strong>Direct-infusion MS</strong>. Set <strong>Acetate ions present</strong> to match the negative-mode ion chemistry, and enter the mass tolerances used for your precursor and fragment measurements. The retention-time field is inactive for direct infusion.</p>
+          <figure class="tutorial-figure">
+            <a class="capture-link" href="../img/tutorials/lipidprophet-alex123-liver-input.png" aria-label="Open full-resolution screenshot: ALEX123 shotgun liver workspace showing the three RDB files and the Direct-infusion MS profile"><img src="../img/tutorials/lipidprophet-alex123-liver-input.png" width="4480" height="2896" alt="ALEX123 shotgun liver workspace showing the three RDB files and the Direct-infusion MS profile" loading="lazy" decoding="async"></a>
+            <figcaption>The Shotgun MSALL liver (ALEX123) workspace uses 5 ppm for precursors and 10 ppm for fragments. The acetate box is clear. <a href="../img/tutorials/lipidprophet-alex123-liver-input.png">Full-resolution PNG</a></figcaption>
+          </figure>
+        </section>
+        <section id="run">
+          <h2>3. Compute and review the LP scores</h2>
+          <p>Choose a workspace file and a <code>.tab</code> output. Click <strong>Compute</strong> and wait for the QC plot. Inspect the score curve, then apply your chosen cutoff to the result table.</p>
+          <figure class="tutorial-figure">
+            <a class="capture-link" href="../img/tutorials/lipidprophet-alex123-liver-qc.png" aria-label="Open full-resolution screenshot: LipidProphet QC plot for the ALEX123 shotgun mouse liver study"><img src="../img/tutorials/lipidprophet-alex123-liver-qc.png" width="4480" height="2896" alt="LipidProphet QC plot for the ALEX123 shotgun mouse liver study" loading="lazy" decoding="async"></a>
+            <figcaption>The shotgun QC curve shows how the number of retained identifications changes as you raise the cutoff. <a href="../img/tutorials/lipidprophet-alex123-liver-qc.png">Full-resolution PNG</a></figcaption>
+          </figure>
+          <p>For your final list, <a href="results.html#open">filter the exported table</a> by LipidProphet score. Its rows follow the workspace’s export and grouping settings.</p>
+          <p>Choose <strong>Shotgun MSALL liver (ALEX123)</strong> in the study chooser to reproduce these screens. The <a href="../downloads.html#studies">liver package</a> includes the reference output. For ALEX<sup>123</sup>, shotgun lipidomics, or score interpretation, <a href="../contact.html#christer">contact Christer S. Ejsing</a>.</p>
+          <p id="cli">To score a prepared study from a script, use the <a href="cli.html#run">command-line example</a>.</p>
+        </section>
+        <nav class="tutorial-nav" aria-label="Tutorial navigation"><a href="msdial-workflow.html"><small>Previous</small>MS-DIAL workflow</a><a href="settings.html"><small>Next</small>Matching settings →</a></nav>
       </article>
-      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#scope">When to use</a></li><li><a href="#inputs">ALEX<sup>123</sup> results</a></li><li><a href="#targets">Generate targets</a></li><li><a href="#matching">Matching behavior</a></li><li><a href="#run">Run &amp; validate</a></li><li><a href="#cli">CLI override</a></li></ol></aside>
-    </div></section>
+      <aside class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#inputs">Export the evidence</a></li><li><a href="#targets">Choose direct infusion</a></li><li><a href="#run">Run the analysis</a></li></ol></aside>
+    </div></div>
   </main>
   <site-footer root=".."></site-footer>
 </body>

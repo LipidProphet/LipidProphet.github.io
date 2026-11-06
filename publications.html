@@ -3,36 +3,54 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Scientific rationale, validation scope, and related research behind LipidProphet.">
+  <meta name="description" content="Learn how LipidProphet uses precursor and fragment detections across replicate measurements to assess confidence in lipid identifications.">
   <meta name="theme-color" content="#071827">
   <meta property="og:title" content="Research | LipidProphet">
-  <meta property="og:description" content="The scientific rationale and validation scope behind LipidProphet confidence scoring.">
+  <meta property="og:description" content="How LipidProphet uses dataset-level evidence to score candidate lipid identifications.">
   <meta property="og:image" content="https://lipidprophet.github.io/img/LP_logo_256.png">
   <link rel="canonical" href="https://lipidprophet.github.io/publications.html">
   <link rel="icon" href="img/LP_logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
-  <script src="js/site.js" defer></script>
+  <script src="js/site.js?v=71fd16e3ab50" defer></script>
   <title>Research | LipidProphet</title>
 </head>
 <body>
   <site-header active="research" root="."></site-header>
-  <main id="main-content">
-    <header class="page-hero"><div class="container"><span class="eyebrow">Scientific foundation</span><h1>Confidence scoring built for real lipidomics complexity.</h1><p class="lead">LipidProphet addresses limitations of per-spectrum similarity scoring by learning from precursor and fragment detection frequencies across an entire dataset.</p></div></header>
-    <section class="section"><div class="container split">
-      <div><span class="eyebrow">The scoring idea</span><h2>Dataset-level evidence</h2><p>Cosine similarity and related scores evaluate spectral matches individually. In large studies, this can be challenged by diverse fragmentation mechanisms, low-abundance diagnostic ions, multiple levels of structural specificity, and multiplexed spectra from coeluting isomers or isobars.</p><p>LipidProphet instead computes confidence from statistical properties of the full dataset. Its four subscore functions capture intrinsic MS² features and work together with an algorithm that detects deterministic false-positive annotations.</p></div>
-      <aside class="fact-panel"><blockquote>Fragments that recur across a dataset have a lower probability of being noise. This makes the confidence measure less dependent on instrument-specific intensity patterns.</blockquote></aside>
-    </div></section>
-    <section class="section section-tint"><div class="container">
-      <div class="section-header"><div><span class="eyebrow">Validation scope</span><h2>Tested across distinct analytical strategies.</h2><p class="lead">LipidProphet was validated with murine liver and brain datasets spanning LC-MS², shotgun MS<sup>ALL</sup>, and MS imaging.</p></div></div>
-      <div class="card-grid"><article class="card"><span class="card-icon" aria-hidden="true">LC</span><h3>LC-MS²</h3><p>Chromatographically separated tandem-mass-spectrometry data from multiple tissue datasets.</p></article><article class="card"><span class="card-icon" aria-hidden="true">DI</span><h3>ALEX<sup>123</sup> / Shotgun MS<sup>ALL</sup></h3><p>Direct-infusion data processed with ALEX<sup>123</sup> demonstrate scoring outside chromatography-dependent workflows; ALEX<sup>123</sup> is one supported search engine for this acquisition strategy.</p></article><article class="card"><span class="card-icon" aria-hidden="true">MSI</span><h3>MS imaging</h3><p>MS imaging data demonstrate confidence scoring for spatially resolved lipid identification.</p></article></div>
-    </div></section>
-    <section class="section"><div class="container reading-width"><article class="publication">
-      <span class="publication-status">Research manuscript</span>
-      <h2>LipidProphet: a universal metric for FDR-controlled lipidomics</h2>
-      <p><strong>Authors:</strong> Leonida M. Lamp, Jürgen Hartler, Thomas Züllig, and Christer S. Ejsing</p>
-      <p>The study introduces the application, scoring concept, deterministic false-positive control, and validation across five large-scale lipidomics datasets.</p>
-      <div class="button-row"><a class="button" href="https://github.com/HartlerLab/LipidProphet" target="_blank" rel="noopener noreferrer">View source code ↗</a><a class="button button-secondary" href="contact.html">Contact the authors</a></div>
-    </article></div></section>
+  <main id="main-content" class="research-page">
+    <header class="page-hero"><div class="container">
+      <span class="eyebrow">Research</span>
+      <h1>What gives us <span>high confidence</span> in a lipid identification?</h1>
+      <p class="lead">LipidProphet addresses limitations of per-spectrum similarity scoring by learning from precursor and fragment detection frequencies across an entire dataset. It scores the lipid candidates reported by your search engine.</p>
+    </div></header>
+
+    <div class="section-compact"><div class="container">
+      <article class="publication reading-width" id="manuscript">
+        <span class="publication-status">Research manuscript</span>
+        <h2>LipidProphet – a universal metric for FDR-controlled lipidomics</h2>
+        <p class="authors"><strong>Authors:</strong> <span>Leonida M. Lamp<sup aria-hidden="true">†</sup></span>, <span>Jürgen Hartler<sup aria-hidden="true">†,*</sup></span>, <span>Thomas Züllig</span>, and <span>Christer S. Ejsing<sup aria-hidden="true">*</sup></span></p>
+        <p class="contribution-note">
+          <sup aria-hidden="true">†</sup> Leonida M. Lamp and Jürgen Hartler contributed equally to this work.<br>
+          <sup aria-hidden="true">*</sup> Correspondence to <a href="contact.html#jurgen">Jürgen Hartler</a> or <a href="contact.html#christer">Christer S. Ejsing</a>.
+        </p>
+      </article>
+      <div class="research-resources split">
+        <section id="study">
+          <h2>Study data</h2>
+          <p>Open a processed study package in LipidProphet to reproduce a run. The underlying experiments are documented in these MassIVE records.</p>
+          <ul class="resource-list">
+            <li><a href="https://doi.org/10.25345/C5N58CZ27">LC–MS² liver · MSV000096673</a></li>
+            <li><a href="https://doi.org/10.25345/C5RX93R62">LC–MS² brain · MSV000096672</a></li>
+            <li><a href="https://doi.org/10.25345/C5959CK9Z">Shotgun MS<sup>ALL</sup> liver · MSV000096606</a></li>
+            <li><a href="https://doi.org/10.25345/C5639KH6G">Shotgun MS<sup>ALL</sup> brain · MSV000096483</a></li>
+          </ul>
+          <a class="card-link" href="tutorials/quick-start.html#workspace">Open a study in the application</a>
+        </section>
+        <section id="software">
+          <h2>Software and source code</h2>
+          <p>LipidProphet is a standalone Java 21 application licensed under Apache 2.0. The manuscript lists the <a href="https://github.com/HartlerLab/LipidProphet">HartlerLab/LipidProphet repository</a>. For repository access, <a href="contact.html#jurgen">contact Jürgen Hartler</a>.</p>
+        </section>
+      </div>
+    </div></div>
   </main>
   <site-footer root="."></site-footer>
 </body>

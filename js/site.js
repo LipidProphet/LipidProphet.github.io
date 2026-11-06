@@ -202,7 +202,6 @@
                 </div>
                 <div class="search-results" id="site-search-results" aria-label="Search results" hidden></div>
               </form>
-              <a class="nav-github" href="https://github.com/HartlerLab/LipidProphet" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
             </nav>
           </div>
         </header>`;
@@ -384,7 +383,7 @@
                 <ul class="footer-links">
                   <li><a href="${pathFrom(root, "tutorials/quick-start.html")}">Quick start</a></li>
                   <li><a href="${pathFrom(root, "tutorials/index.html")}">All tutorials</a></li>
-                  <li><a href="${pathFrom(root, "downloads.html")}">Downloads &amp; manual</a></li>
+                  <li><a href="${pathFrom(root, "downloads.html")}">Downloads &amp; study data</a></li>
                 </ul>
               </div>
               <div>
@@ -392,14 +391,13 @@
                 <ul class="footer-links">
                   <li><a href="${pathFrom(root, "publications.html")}">Research</a></li>
                   <li><a href="${pathFrom(root, "contact.html")}">Support</a></li>
-                  <li><a href="https://github.com/HartlerLab/LipidProphet" target="_blank" rel="noopener noreferrer">Source code ↗</a></li>
+                  <li><a href="${pathFrom(root, "publications.html#software")}">Source code</a></li>
                   <li><a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener noreferrer">Apache 2.0 license ↗</a></li>
                 </ul>
               </div>
             </div>
             <div class="footer-bottom">
               <span>© <span data-current-year></span> LipidProphet contributors.</span>
-              <span>Built for reproducible lipidomics.</span>
             </div>
           </div>
         </footer>`;
