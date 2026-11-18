@@ -17,10 +17,19 @@
     </div></header>
     <div class="section"><div class="container tutorial-layout">
       <article class="tutorial-content">
-        <section id="targetdb">
+        <section id="targetdb" class="faq">
           <h2 id="principle">Select an acquisition profile</h2>
           <dl class="definition-list"><dt>LC-MS</dt><dd>Use for measurements separated by liquid chromatography.</dd><dt>Direct-infusion MS</dt><dd>Use for shotgun acquisitions, including MS<sup>ALL</sup>.</dd><dt>MS imaging</dt><dd>Use with suitable MS1 and MS² evidence. <a href="prepare-inputs.html#imaging">Check the imaging input requirements.</a></dd></dl>
           <p><strong>Acetate ions present</strong> selects acetate for the affected negative-mode adducts. Leave the box clear when your method used formate.</p>
+          <details>
+            <summary>Advanced settings for a custom target list</summary>
+            <ol id="advanced-settings" class="resource-list">
+              <li>Open <code>.lpSettings</code> in a text editor. On Windows, paste <code>%ProgramData%\LipidProphet</code> into File Explorer’s address bar to find it. On macOS or Linux, look for the hidden file beside <code>LipidProphet.jar</code>.</li>
+              <li>Add or update the line <code>advancedMode=true</code>, save the file, and restart LipidProphet.</li>
+              <li>On <strong>Input / Compute</strong>, go to <strong>Settings → Advanced options</strong> and clear <strong>Use in-memory generated TargetDB</strong>.</li>
+              <li>Select the ALEX<sup>123</sup> target list files (<code>.txt</code>) used for your search. Under <strong>Fragment guide</strong>, choose the matching workbook (<code>.xlsx</code>). Its <code>FragmentGuide</code> sheet tells LipidProphet how to read the chain names for each lipid class.</li>
+            </ol>
+          </details>
         </section>
         <section id="mass">
           <h2>Match the precursor and fragment evidence</h2>

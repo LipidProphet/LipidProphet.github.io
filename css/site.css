@@ -976,6 +976,10 @@ pre code {
   overflow-wrap: anywhere;
 }
 
+.tutorial-content details > :target {
+  scroll-margin-block-start: 3rem;
+}
+
 .tutorial-content img {
   border: 1px solid var(--ink-200);
   border-radius: var(--radius);
